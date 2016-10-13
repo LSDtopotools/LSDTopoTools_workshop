@@ -503,7 +503,7 @@ MathJax.Hub.Config({
 </ol>
 </div>
 <div class="paragraph">
-<p>The main difference between these groups is that if you are at Edinburgh you can use our Linux servers and if you are not you will need to set up your own Linux server on your desktop computer or laptop using a clever bit of softwre called <a href="https://www.vagrantup.com/">Vagrant</a>. DOn&#8217;t worry if that sounds a bit complex, we have instructions to walk you through the process, which works on any operating system (e.g., Windows, Linux, or MacOS) and is all based on open-source software.</p>
+<p>The main difference between these groups is that if you are at Edinburgh you can use our Linux servers and if you are not you will need to set up your own Linux server on your desktop computer or laptop using a clever bit of softwre called <a href="https://www.vagrantup.com/">Vagrant</a>. Don&#8217;t worry if that sounds a bit complex, we have instructions to walk you through the process, which works on any operating system (e.g., Windows, Linux, or MacOS) and is all based on open-source software.</p>
 </div>
 <div class="sect2">
 <h3 id="_starting_up_at_edinburgh">1.1. Starting up at Edinburgh</h3>
@@ -525,7 +525,7 @@ MathJax.Hub.Config({
 <div class="sect3">
 <h4 id="_if_nx_is_not_working">1.1.1. If NX is not working</h4>
 <div class="paragraph">
-<p>Sometimes NX misbehaves, so you can also use a secure shell clinet. Our lab computers have something called either <strong>SSH client</strong> or <strong>SSH Secure Shell</strong>: select the client on the start menu and then begin a new session. You will need to use the address <code>ssh.geos.ed.ac.uk</code>, and then your username, and click on password control. You will then need to enter your EASE password at the prompt. You should start <strong>TWO</strong> sessions. These windows are the equivalent of a terminal window in NX.</p>
+<p>Sometimes NX misbehaves, so you can also use a secure shell client. Our lab computers have something called either <strong>SSH client</strong> or <strong>SSH Secure Shell</strong>: select the client on the start menu and then begin a new session. You will need to use the address <code>ssh.geos.ed.ac.uk</code>, and then your username, and click on password control. You will then need to enter your EASE password at the prompt. You should start <strong>TWO</strong> sessions. These windows are the equivalent of a terminal window in NX.</p>
 </div>
 </div>
 </div>
@@ -683,7 +683,7 @@ $ /home/MyUserName/</code></pre>
 </div>
 </li>
 <li>
-<p>Make a directory called <code>LSDTopoTools</code> using the <code>mkdir</code> and then go into it with the <code>cd</code> command:</p>
+<p>Make a directory called <code>LSDTopoTools</code> using the <code>mkdir</code> command and then go into it with the <code>cd</code> command:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ mkdir LSDTopoTools
@@ -791,7 +791,7 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_workshop_data.git LSDTT
 <h2 id="_simple_surface_metrics">2. Simple surface metrics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this section we will use the <a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver">LSDTopoTools analysis driver</a> program to calcualte some new rasters. The analysis driver is good for doing simple calculations and routine analyses.</p>
+<p>In this section we will use the <a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver">LSDTopoTools analysis driver</a> program to calculate some new rasters. The analysis driver is good for doing simple calculations and routine analyses.</p>
 </div>
 <div class="sect2">
 <h3 id="_making_the_analysis_driver_program">2.1. Making the analysis driver program</h3>
@@ -821,7 +821,7 @@ $ cd Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>/path/to/</code> bit can be replaced by your own path (in my case it is <code>/homes/smudd/</code>). In vagrant this is simply <code>/</code> since our vagrant setup puts the <code>LSDTopoTools</code> directory within the root directory.</p>
+<p>The <code>/path/to/</code> bit can be replaced by your own path (in my case it is <code>/home/smudd/</code>). In vagrant this is simply <code>/</code> since our vagrant setup puts the <code>LSDTopoTools</code> directory within the root directory.</p>
 </div>
 </li>
 <li>
@@ -854,7 +854,7 @@ $ cd Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver</code></pre>
 <p>Use the <strong>SECOND</strong> terminal window to go to the data folder (if you&#8217;ve not got another window, or secure shell, open one now).</p>
 </li>
 <li>
-<p>Use this second window to go to the <code>LSDTT_workshop_data directory</code>:</p>
+<p>Use this second window to go to the <code>LSDTT_workshop_data</code> directory:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ cd /path/to/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/</code></pre>
@@ -873,7 +873,7 @@ WA.hdr      Workshop_AD_example.LSDTT_driver</code></pre>
 </div>
 </li>
 <li>
-<p>The file you want is <code>Workshop_AD_example.LSDTT_driver</code>. If you are using our Vagrant setup then this doens&#8217;t need to be edited. But if you are running on an Edinurgh server or are using your own data, this file will need to be modified.</p>
+<p>The file you want is <code>Workshop_AD_example.LSDTT_driver</code>. If you are using our Vagrant setup then this doesn&#8217;t need to be edited. But if you are running on an Edinburgh server or are using your own data, this file will need to be modified.</p>
 <div class="paragraph">
 <p>==== Modifying the LSDTT_driver file</p>
 </div>
@@ -898,14 +898,22 @@ WA.hdr      Workshop_AD_example.LSDTT_driver</code></pre>
 <p>At Edinburgh, you can map your network drives so you can see files on our linux servers and in your Windows or MacOS desktop. So edit your files there.</p>
 </li>
 <li>
-<p>Outside Edinburgh, you should be using our Vagrant setup, and in that case files are snyced between your linux server and your native operating system so you can use a local text editor.</p>
+<p>Outside Edinburgh, you should be using our Vagrant setup, and in that case files are synced between your linux server and your native operating system so you can use a local text editor.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>So what text editor to use?
-* If you have administrator permission on your computer, I recommend <a href="http://brackets.io/">brackets</a> for text editing. It works on Windows, MacOS and Linux.
-* If you are in an Edinburgh computer lab, you should have <a href="http://www.pspad.com/en/">PSPad</a> installed so you can use that.</p>
+<p>So what text editor to use?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you have administrator permission on your computer, I recommend <a href="http://brackets.io/">brackets</a> for text editing. It works on Windows, MacOS and Linux.</p>
+</li>
+<li>
+<p>If you are in an Edinburgh computer lab, you should have <a href="http://www.pspad.com/en/">PSPad</a> installed so you can use that.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -952,10 +960,10 @@ read fname: WAWater</code></pre>
 </div>
 </li>
 <li>
-<p>The two lines with <code>path</code> tell the program where to read and write the data. The <code>read fname</code> is the name of the file on which you will perform analysis.</p>
+<p>The two lines with <code>path</code> tell the program where to read and write the data.</p>
 </li>
 <li>
-<p>The <code>read fname</code> is the <strong>PREFIX</strong> of the DEM you will use. So if your DEM is called <code>WA.bil</code> then <code>read fname:</code> wil be  <code>WA</code>.</p>
+<p>The <code>read fname</code> is the name of the file on which you will perform analysis.  The <code>read fname</code> is the <strong>PREFIX</strong> of the DEM you will use. So if your DEM is called <code>WA.bil</code> then <code>read fname:</code> will be  <code>WA</code>.</p>
 </li>
 <li>
 <p>To see where your data is, type <code>pwd</code> in the <code>LSDTT_workshop_data</code>:</p>
@@ -1084,7 +1092,7 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 <div class="sect2">
 <h3 id="_looking_at_the_first_analysis_in_qgis">2.3. Looking at the first analysis in QGIS</h3>
 <div class="paragraph">
-<p>We are going to look at some of the resulting rasters in QGIS. The main reason for using QGIS and not ArcMap is that QGIS is open source and you can downlaod it onto your home computer. ArcMap needs an expensive license. However, if you want to use ArcMap the steps are similar (the buttons are just in slightly different places).</p>
+<p>We are going to look at some of the resulting rasters in QGIS. The main reason for using QGIS and not ArcMap is that QGIS is open source and you can download it onto your home computer. ArcMap needs an expensive license. However, if you want to use ArcMap the steps are similar (the buttons are just in slightly different places).</p>
 </div>
 </div>
 <div class="sect2">
@@ -1098,7 +1106,7 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-12 14:12:02 GMT Daylight Time
+Last updated 2016-10-13 11:08:51 BST
 </div>
 </div>
 </body>
