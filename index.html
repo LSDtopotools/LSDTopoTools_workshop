@@ -460,8 +460,15 @@ MathJax.Hub.Config({
 <li><a href="#_simple_surface_metrics">2. Simple surface metrics</a>
 <ul class="sectlevel2">
 <li><a href="#_making_the_analysis_driver_program">2.1. Making the analysis driver program</a></li>
-<li><a href="#_running_your_first_analysis">2.2. Running your first analysis</a></li>
-<li><a href="#_summary_2">2.3. Summary</a></li>
+<li><a href="#_running_your_first_analysis">2.2. Running your first analysis</a>
+<ul class="sectlevel3">
+<li><a href="#_looking_at_the_example_data">2.2.1. Looking at the example data</a></li>
+<li><a href="#_using_your_own_data">2.2.2. Using your own data</a></li>
+<li><a href="#_running_the_analysis">2.2.3. Running the analysis</a></li>
+</ul>
+</li>
+<li><a href="#_looking_at_the_first_analysis_in_qgis">2.3. Looking at the first analysis in QGIS</a></li>
+<li><a href="#_summary_2">2.4. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -650,7 +657,7 @@ In Linux, to find out your current directory type the command <code>pwd</code>.
 <p>To go up you need to choose one of the branches: <code>cd A_directory_name</code> where <code>A_directory_name</code> can be the name of any directory within your current directory.</p>
 </li>
 <li>
-<p>To see what is in a directory use <code>ls</code>. If you want lost of details type <code>ls -l</code>.</p>
+<p>To see what is in a directory use <code>ls</code>. If you want lots of details type <code>ls -l</code>.</p>
 </li>
 <li>
 <p>To see what directory you are in type <code>pwd</code></p>
@@ -726,7 +733,7 @@ $ mkdir Topographic_projects</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ cd Topographic_projects
-$ git clone https://github.com/LSDtopotools/LSDTopoTools_workshop_data.git LSDTT_workshop</code></pre>
+$ git clone https://github.com/LSDtopotools/LSDTopoTools_workshop_data.git</code></pre>
 </div>
 </div>
 </li>
@@ -791,6 +798,18 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_workshop_data.git LSDTT
 <div class="paragraph">
 <p>LSDTopoTools is distributed as source code in C++, so you have to turn it into a program using a <a href="https://en.wikipedia.org/wiki/Compiler">compiler</a> and a program called <code>make</code>. Don&#8217;t worry; this is rather painless.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is easier to keep track of things if you have one terminal window for the directories with the source code (these are all in the <code>Git_projects</code> directory) and another terminal window inside directories where you keep your data (these are in the <code>Topographic_projects</code> directory).
+</td>
+</tr>
+</table>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -821,6 +840,11 @@ $ cd Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_running_your_first_analysis">2.2. Running your first analysis</h3>
+<div class="paragraph">
+<p>It is now time to do some number crunching of your DEM using <strong>LSDTopoTools</strong>. In this part we will get slope, curvature and hillshade rasters.</p>
+</div>
+<div class="sect3">
+<h4 id="_looking_at_the_example_data">2.2.1. Looking at the example data</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -837,11 +861,234 @@ $ cd Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver</code></pre>
 </div>
 </div>
 </li>
+<li>
+<p>We have provided an example parameter file in this directory. You can see all the stuff in the <code>LSDTT_workshop_data</code> directory by using the <code>ls</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ls
+README.asc  WAWater.bil                       Workshop_ChiTool.driver
+WA.bil      WAWater.hdr
+WA.hdr      Workshop_AD_example.LSDTT_driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The file you want is <code>Workshop_AD_example.LSDTT_driver</code>. If you are using our Vagrant setup then this doens&#8217;t need to be edited. But if you are running on an Edinurgh server or are using your own data, this file will need to be modified.</p>
+<div class="paragraph">
+<p>==== Modifying the LSDTT_driver file</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Editing text files</div>
+<div class="paragraph">
+<p>We have parameter files (sometimes called <code>driver</code> files) that tell LSDTopoTools what data to look for, what analyses to do, etc. You will need to modify these files. You need a <strong>text editor</strong> to do this. You <strong>CANNOT</strong> usa a word processor (like Word or Wordpad) since it inserts a load of formatting. You just need something that changes plain text without any fuss.</p>
+</div>
+<div class="paragraph">
+<p>You can edit text in Linux using <a href="https://www.gnu.org/software/emacs/">emacs</a> or <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">vim</a>, but these are not great for people uncomfortable in Linux.</p>
+</div>
+<div class="paragraph">
+<p>However, you don&#8217;t need to be in Linux to edit these files!</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>At Edinburgh, you can map your network drives so you can see files on our linux servers and in your Windows or MacOS desktop. So edit your files there.</p>
+</li>
+<li>
+<p>Outside Edinburgh, you should be using our Vagrant setup, and in that case files are snyced between your linux server and your native operating system so you can use a local text editor.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>So what text editor to use?
+* If you have administrator permission on your computer, I recommend <a href="http://brackets.io/">brackets</a> for text editing. It works on Windows, MacOS and Linux.
+* If you are in an Edinburgh computer lab, you should have <a href="http://www.pspad.com/en/">PSPad</a> installed so you can use that.</p>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Hopefully you know what a text editor is (if not read the box above!). Open <code>Workshop_AD_example.LSDTT_driver</code> in a text editor. It looks like this</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># This is a driver file for LSDTopoTools
+# Any lines with the # symbol in the first row will be ignored
+
+# File information
+# IMPORTANT: you will need to modify the file path to reflect your directory structure
+# NOTE: If you want to use a smaller test DEM use WA instead of WAWater
+dem read extension: bil
+dem write extension: bil
+read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WAWater
+
+# Parameters for various topographic analysis
+min_slope_for_fill: 0.0001
+
+# Parameters for polyfit and slope calculations
+polyfit_window_radius: 19
+slope_method: polyfit
+
+# The different analyses to be run
+write hillshade: true
+write slope: true
+write curvature: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Whoa! What is all this stuff? There are instructions to our program telling the computer what to do. Most of this you can ignore (for now), but for us the important lines are:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WAWater</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The two lines with <code>path</code> tell the program where to read and write the data. The <code>read fname</code> is the name of the file on which you will perform analysis.</p>
+</li>
+<li>
+<p>The <code>read fname</code> is the <strong>PREFIX</strong> of the DEM you will use. So if your DEM is called <code>WA.bil</code> then <code>read fname:</code> wil be  <code>WA</code>.</p>
+</li>
+<li>
+<p>To see where your data is, type <code>pwd</code> in the <code>LSDTT_workshop_data</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
+homes/smudd/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>YOUR directory will be different!</strong> Copy your directory into the file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: /my/directory/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /my/directory/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you are using vagrant the directories will work without any modification.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>You can also change the name of the data file. It can be your own data, or it can be the much smaller DEM <code>WA.bil</code>.</p>
+</li>
 </ol>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_using_your_own_data">2.2.2. Using your own data</h4>
+<div class="paragraph">
+<p>If you use your own data you need to make sure it is in the correct format. You can read all about that <a href="http://lsdtopotools.github.io/LSDTT_book/#_preparing_your_data">in our main documentation</a>. But the main points are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Data <strong>MUST</strong> be in a projected coordinate system. We prefer UTM. To convert to UTM from anything else <a href="http://lsdtopotools.github.io/LSDTT_book/#_gdal_2">use GDAL</a>.</p>
+</li>
+<li>
+<p>Data <strong>MUST</strong> be in one of 3 formats, but I am only going to tell you about one since it is by far the best: <a href="http://www.harrisgeospatial.com/docs/ENVIImageFiles.html">ENVI bil</a>. <strong>THIS IS NOT THE SAME AS ESRI BIL!!!</strong>. To convert from other formats to <strong>ENVI bil</strong> <a href="http://lsdtopotools.github.io/LSDTT_book/#_gdal_2">use GDAL</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_the_analysis">2.2.3. Running the analysis</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Okay, at this point you should have modified the <code>Workshop_AD_example.LSDTT_driver</code> file so that it reflects the directory of your data and the name of your data. Don&#8217;t touch anything else.</p>
+</li>
+<li>
+<p>Go back to the terminal window where you ran the <code>make</code> command (remember, use two terminal or SSH windows: it makes things easer).</p>
+</li>
+<li>
+<p>In that window make sure you have the program: type</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ls LSDTT_analysis_from_paramfile.out</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If it says <code>no such file or directory</code> it means you are either in the wrong directory or have not compiled the program. If that is the case use <code>pwd</code> to figure out where you are and try to get back to the folder with the <code>.out</code> file.</p>
+</div>
+</li>
+<li>
+<p>If you have that file, type</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./LSDTT_analysis_from_paramfile.out /my/directory/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/ Workshop_AD_example.LSDTT_driver</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You will need to update the path to reflect where your data is. The easiest way to do this is to type <code>pwd</code> in the terminal window with your data and copy it into the window with the program.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>When you run this command, the program will work for a little while and then spit out several rasters that will sit in your data folder. The raster that it prints are determined by these lines in the <code>LSDTT_driver</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># The different analyses to be run
+write hillshade: true
+write slope: true
+write curvature: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So hopefully it is obvious that you will get slope, curvature and hillshade rasters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ls
+README.asc   Workshop_AD_example_curvature.bil  Workshop_AD_example_slope.bil
+WA.bil       Workshop_AD_example_curvature.hdr  Workshop_AD_example_slope.hdr
+WA.hdr       Workshop_AD_example_hs.bil         Workshop_ChiTool.driver
+WAWater.bil  Workshop_AD_example_hs.hdr
+WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The rasters have filenames that reflect what they are (<code>HS</code>, for example, denotes a hillshade raster). Okay, we can now move on to looking at the data!</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <div class="sect2">
-<h3 id="_summary_2">2.3. Summary</h3>
+<h3 id="_looking_at_the_first_analysis_in_qgis">2.3. Looking at the first analysis in QGIS</h3>
+<div class="paragraph">
+<p>We are going to look at some of the resulting rasters in QGIS. The main reason for using QGIS and not ArcMap is that QGIS is open source and you can downlaod it onto your home computer. ArcMap needs an expensive license. However, if you want to use ArcMap the steps are similar (the buttons are just in slightly different places).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary_2">2.4. Summary</h3>
 <div class="paragraph">
 <p>By the end of this chapter you should have created slope, curvature and hillshade rasters, and you should also have created a masked curvature raster.</p>
 </div>
@@ -851,7 +1098,7 @@ $ cd Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-12 20:03:45 GMT Daylight Time
+Last updated 2016-10-12 14:12:02 GMT Daylight Time
 </div>
 </div>
 </body>
