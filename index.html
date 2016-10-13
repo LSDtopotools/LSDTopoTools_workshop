@@ -647,15 +647,15 @@ In Linux, to find out your current directory type the command <code>pwd</code>.
 <p>Inside your computer are files organised into directories (in Windows these are called folders, but the concept is the same). These can be nested, so a directory can contain other directories.</p>
 </div>
 <div class="paragraph">
-<p>One way of thinking about this is like a tree. Directories inside other directories are like branches. If you keep going down a tree eventually you get to a root. In Linux the bottom directory is called <strong>root</strong>: it contains all the other directories. So when we say you are going "up" is means you are getting into smaller and smaller directories, and if you are going "down" it means you are getting closer to the root, where there are directories that connect to more stuff (i.e., they connect to more "branches".)</p>
+<p>One way of thinking about this is like the root system of a tree. Directories inside other directories are like branching roots. If you start at the tip of the system and keep going up you get to the biggest root. In Linux the top directory is called <strong>root</strong>: it contains all the other directories. So when we say you are going "down" is means you are getting into smaller and smaller directories, and if you are going "up" it means you are getting closer to the root, where there are directories that connect to more stuff (i.e., they connect to more "branches".)</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>To go "down" you type the command <code>cd ..</code> The <code>cd</code> stands for "change directory".</p>
+<p>To go "up" you type the command <code>cd ..</code> The <code>cd</code> stands for "change directory".</p>
 </li>
 <li>
-<p>To go up you need to choose one of the branches: <code>cd A_directory_name</code> where <code>A_directory_name</code> can be the name of any directory within your current directory.</p>
+<p>To go "down" you need to choose one of the branches: <code>cd A_directory_name</code> where <code>A_directory_name</code> can be the name of any directory within your current directory.</p>
 </li>
 <li>
 <p>To see what is in a directory use <code>ls</code>. If you want lots of details type <code>ls -l</code>.</p>
@@ -742,7 +742,7 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_workshop_data.git</code
 <p>This will make a folder <code>LSDTT_workshop</code> into which you can place your own data. It also contains two test DEMs from Scotland that we will use in the Eroding Landscapes course.</p>
 </li>
 <li>
-<p>Now go back into your <code>Git_projects</code> directory. If you hve followed the above directions you will be sitting in the <code>Topographic_projects</code> directory so go down a level and then up into the <code>Git_projects</code> directory:</p>
+<p>Now go back into your <code>Git_projects</code> directory. If you hve followed the above directions you will be sitting in the <code>Topographic_projects</code> directory so go up a level and then down into the <code>Git_projects</code> directory:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ cd ..
@@ -1095,6 +1095,88 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 <div class="paragraph">
 <p>We are going to look at some of the resulting rasters in QGIS. The main reason for using QGIS and not ArcMap is that QGIS is open source and you can download it onto your home computer. ArcMap needs an expensive license. However, if you want to use ArcMap the steps are similar (the buttons are just in slightly different places).</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In QGIS the add data button looks like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_add_data.jpg" alt="Add data">
+</div>
+<div class="title">Figure 2. Open raster data in QGIS</div>
+</div>
+</li>
+<li>
+<p>Find the DEM (in the example <code>WAWater.bil</code>) and add it.</p>
+</li>
+<li>
+<p>Once you add data you will see it in the layers toolbar:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_layers.jpg" alt="QGIS layers">
+</div>
+<div class="title">Figure 3. QGIS layers</div>
+</div>
+<div class="paragraph">
+<p>You should see something like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Whiteadder_Water_DEM.jpg" alt="Whiteadder_Water">
+</div>
+<div class="title">Figure 4. DEM of the Whiteadder Water, Scotland</div>
+</div>
+</li>
+<li>
+<p>If you want to change the colours right click on the layers and select <code>properties</code>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_properties.jpg" alt="Raster properties">
+</div>
+<div class="title">Figure 5. Selecting the properties of a raster</div>
+</div>
+</li>
+<li>
+<p>Then go into the <code>Style</code> menu and select <code>Singleband pseudocolor</code></p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_singleband_pseudocolor.jpg" alt="Select pseudo colour">
+</div>
+<div class="title">Figure 6. Selecting the display of colours</div>
+</div>
+</li>
+<li>
+<p>If you go to the "new color map" pull down you can select from a range of colormaps, and download yet even more by selecting "new color ramp" at the bottom. For topography the wiki-schwartzwald` gradient is nice. You can choose whichever one you want.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_new_colour_ramp.jpg" alt="New colour ramp">
+</div>
+<div class="title">Figure 7. Selecting a colour ramp (including laoding new ones)</div>
+</div>
+</li>
+<li>
+<p>To get this to work you then need to click on the <strong>classify</strong> button. Then click <strong>apply</strong>. You will get something like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_coloured_DEM.jpg" alt="New coloured DEM">
+</div>
+<div class="title">Figure 8. Whiteadder Water DEM in colour</div>
+</div>
+</li>
+<li>
+<p>Following a similar procedure you can load the hillshade, slope and curvature maps, for example:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Whiteadder_Water_hillshade.jpg" alt="Hillshade">
+</div>
+<div class="title">Figure 9. Whiteadder Water hillshade</div>
+</div>
+</li>
+<li>
+<p>If you want to make layers transparent, right click on the raster layer, select <strong>preperties</strong>, and select the <strong>transparency</strong> tab.</p>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_summary_2">2.4. Summary</h3>
@@ -1107,7 +1189,7 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-13 11:08:51 BST
+Last updated 2016-10-12 14:12:02 GMT Daylight Time
 </div>
 </div>
 </body>
