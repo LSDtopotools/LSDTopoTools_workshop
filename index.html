@@ -469,7 +469,8 @@ MathJax.Hub.Config({
 </ul>
 </li>
 <li><a href="#_looking_at_the_first_analysis_in_qgis">2.3. Looking at the first analysis in QGIS</a></li>
-<li><a href="#_summary_2">2.4. Summary</a></li>
+<li><a href="#_making_a_curvature_mask">2.4. Making a curvature mask</a></li>
+<li><a href="#_summary_2">2.5. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -935,6 +936,7 @@ dem write extension: bil
 read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
 write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
 read fname: WAWater
+write fname: WAWater
 
 # Parameters for various topographic analysis
 min_slope_for_fill: 0.0001
@@ -956,7 +958,8 @@ write curvature: true</code></pre>
 <div class="content">
 <pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
 write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
-read fname: WAWater</code></pre>
+read fname: WAWater
+write fname: WAWater</code></pre>
 </div>
 </div>
 </li>
@@ -1179,7 +1182,70 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_2">2.4. Summary</h3>
+<h3 id="_making_a_curvature_mask">2.4. Making a curvature mask</h3>
+<div class="paragraph">
+<p>In this next step we will use the curvature data to make a masked plot. Curvature is a metric that tells us about where there are fluvial vs hillslope processes happening in a landscape, and has been used to <a href="http://onlinelibrary.wiley.com/doi/10.1029/2011JF002057/abstract">infer erosion rates</a>.</p>
+</div>
+<div class="paragraph">
+<p>For this, we will use a the <strong>LSDTopoTools_AnalysisDriver</strong> once again.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>First, go into your data directory and make a renamed copy of the driver file:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cp Workshop_AD_example.LSDTT_driver Mask_example.LSDTT_driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+
+. Now you just need to adjust a few parameters:</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console"># This is a driver file for LSDTopoTools
+# Any lines with the # symbol in the first row will be ignored
+
+# File information
+# IMPORTANT: you will need to modify the file path to reflect your directory structure
+# NOTE: If you want to use a smaller test DEM use WA instead of WAWater
+dem read extension: bil
+dem write extension: bil
+read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WAWater_curvature
+write fname: WAWater_curvature
+
+# Parameters for masking
+mask_threshold: 0
+mask_nodataisbelowthreshold: 0
+
+# The different analyses to be run
+write mask threshold: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+
+. The differences here are that you are using the <code>WAWater_curvature</code> raster instead of the DEM, that you are trying to write a mask threshold, and you are going to turn anything that is over the threshold value of 0 into a <code>nodata</code> (that is, you tell the computer it doesn&#8217;t have any data there).</p>
+</div>
+<div class="paragraph">
+<p>+
+. You can change this around a bit: if you run <code>mask_nodataisbelowthreshold: 1</code> it means anything below the threshold is masked, and you can change the threshold value by changing <code>mask_threshold:</code>.</p>
+</div>
+<div class="paragraph">
+<p>+
+. Once you have done this try loading into QGIS and looking at this data over the hillshade using transparency.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary_2">2.5. Summary</h3>
 <div class="paragraph">
 <p>By the end of this chapter you should have created slope, curvature and hillshade rasters, and you should also have created a masked curvature raster.</p>
 </div>
