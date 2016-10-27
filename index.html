@@ -477,12 +477,18 @@ MathJax.Hub.Config({
 <li><a href="#_chi_mapping">3. Chi mapping</a>
 <ul class="sectlevel2">
 <li><a href="#_making_the_chi_tools">3.1. Making the chi tools</a></li>
-<li><a href="#_looking_at_the_chi_map_in_qgis">3.2. Looking at the chi map in QGIS</a>
+<li><a href="#_running_a_chi_analysis">3.2. Running a chi analysis</a>
 <ul class="sectlevel3">
-<li><a href="#_adding_csv_data">3.2.1. Adding csv data</a></li>
+<li><a href="#_looking_at_parameter_file">3.2.1. Looking at parameter file</a></li>
+<li><a href="#_running_the_analysis_with_the_parameter_file">3.2.2. Running the analysis with the parameter file</a></li>
 </ul>
 </li>
-<li><a href="#_summary_3">3.3. Summary</a></li>
+<li><a href="#_looking_at_the_chi_map_in_qgis">3.3. Looking at the chi map in QGIS</a>
+<ul class="sectlevel3">
+<li><a href="#_adding_csv_data">3.3.1. Adding csv data</a></li>
+</ul>
+</li>
+<li><a href="#_summary_3">3.4. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -1321,12 +1327,154 @@ $ cd Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014</code></
 </li>
 </ol>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_running_a_chi_analysis">3.2. Running a chi analysis</h3>
 <div class="paragraph">
-<p>Unresolved directive in book/chi-analysis/chi-analysis.asc - include::sections/running-the-chi-analysis.asc[]</p>
+<p>Like the <strong>Analysis Driver</strong> from the previous chapter, the <strong>chi tool</strong> is run using a parameter file. We tend to put the parameter file in the same directory as the data. We find that it is much simpler to work with one terminal window open in the directory with the source code (<code>/path/to/LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code>) and another terminal window open in the directory with the data (<code>/path/to/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/</code>).</p>
+</div>
+<div class="sect3">
+<h4 id="_looking_at_parameter_file">3.2.1. Looking at parameter file</h4>
+<div class="paragraph">
+<p>The parameter file for the <strong>chi tool</strong> is called <code>Workshop_ChiTool.driver</code>. It is set up to run on the small <strong>WA.bil</strong> raster. If you want to run on the larger <strong>WAWater.bil</strong> raster you just need to change the filename in the parameter file.</p>
+</div>
+<div class="paragraph">
+<p>The parameter file looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># Parameters for performing chi analysis
+# Comments are preceeded by the hash symbol
+# Documentation can be found here:
+# http://lsdtopotools.github.io/LSDTT_book/#_chi_analysis_part_3_getting_chi_gradients_for_the_entire_landscape
+
+# These are parameters for the file i/o
+# IMPORTANT: You MUST make the write directory: the code will not work if it doens't exist.
+read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WAWater
+channel heads fname: NULL
+
+# Parameter for filling the DEM
+min_slope_for_fill: 0.0001
+
+# Parameters for selecting channels and basins
+
+threshold_contributing_pixels: 2000
+minimum_basin_size_pixels: 500
+test_drainage_boundaries: false
+
+# Parameters for chi analysis
+A_0: 1
+m_over_n: 0.45
+threshold_pixels_for_chi: 2000
+
+n_iterations: 10
+target_nodes: 80
+minimum_segment_length: 10
+sigma: 10.0
+skip: 2
+
+# The data that you want printed to file
+only_check_parameters: false
+print_stream_order_raster: true
+print_DrainageArea_raster: true
+print_segmented_M_chi_map_to_csv: true
+print_simple_chi_map_to_csv: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There is a whole bunch of stuff in here, which you should mostly ignore. Here are the relevant lines:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The lines that control the location of the files to read and write are here:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WA</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You need to update these lines with your own directory structres. The <code>read name:</code> gives the prefix of the DEM. If you want the bigger dem, weplace <code>WA</code> with <code>WAWater</code>.</p>
+</div>
+</li>
+<li>
+<p>These lines control how dense the channel network will be when you run the code:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">threshold_contributing_pixels: 2000
+minimum_basin_size_pixels: 500
+test_drainage_boundaries: false
+
+# Parameters for chi analysis
+A_0: 1
+m_over_n: 0.45
+threshold_pixels_for_chi: 2000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>threshold_pixels_for_chi</code> parameter should not be larger than the <code>threshold_contributing_pixels</code> parameter. If these parameters are small you will get many channels, if they are large you will get fewer channels. <code>minimum_basin_size_pixels</code> should not be larger than <code>threshold_contributing_pixels</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you keep <code>A_0</code> equal to 1, then the chi slope will be the same as the channel steepness index, <code>k_sn</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># The data that you want printed to file
+only_check_parameters: false
+print_stream_order_raster: true
+print_DrainageArea_raster: true
+print_segmented_M_chi_map_to_csv: true
+print_simple_chi_map_to_csv: true</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The <code>only_check_parameters</code> is for bug testing: if true it will make sure your parameters will not immediately lead to a crash.</p>
+</li>
+<li>
+<p>The <code>print_stream_order_raster</code> will print a raster showing where the stream network is.</p>
+</li>
+<li>
+<p>The <code>print_DrainageArea_raster</code> will print a raster showing the drainage area.</p>
+</li>
+<li>
+<p>The two <code>csv</code> parameters are to print files that can both be read by either a GIS or by excel. The <code>segmented</code> is more complete, it has all the information of the <code>simple_chi_map</code> and more; the <code>simple_chi_map</code> only has the chi coordinate and location of the channels.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_the_analysis_with_the_parameter_file">3.2.2. Running the analysis with the parameter file</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you&#8217;ve done the analysis driver excercise, this should be familiar.</p>
+</li>
+<li>
+<p>Go into the directory where you compiled the <strong>chi tool</strong> and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_mapping_tool.exe /path/to/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/ Workshop_ChiTool.driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The program should spit out a bunch of text, and afterwards you will be left with some new files, which we will look at in QGIS in the next section.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_looking_at_the_chi_map_in_qgis">3.2. Looking at the chi map in QGIS</h3>
+<h3 id="_looking_at_the_chi_map_in_qgis">3.3. Looking at the chi map in QGIS</h3>
 <div class="paragraph">
 <p>Lets have a look at the results of the chi data in QGIS (again, steps will be similar in ArcMap).</p>
 </div>
@@ -1369,7 +1517,7 @@ $ cd Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014</code></
 </ol>
 </div>
 <div class="sect3">
-<h4 id="_adding_csv_data">3.2.1. Adding csv data</h4>
+<h4 id="_adding_csv_data">3.3.1. Adding csv data</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1437,7 +1585,7 @@ Sometimes you need to click in the little symbol that looks like a globe in the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_summary_3">3.3. Summary</h3>
+<h3 id="_summary_3">3.4. Summary</h3>
 <div class="paragraph">
 <p>By the end of this chapter you should have created a map of chi and chi slope, and loaded these data into QGIS for inspection.</p>
 </div>
