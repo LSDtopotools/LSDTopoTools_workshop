@@ -452,6 +452,7 @@ MathJax.Hub.Config({
 <ul class="sectlevel3">
 <li><a href="#_directories_if_you_are_at_edinburgh">1.4.1. Directories if you are at Edinburgh</a></li>
 <li><a href="#_directories_if_you_are_outside_edinburgh_or_using_your_home_computer">1.4.2. Directories if you are outside Edinburgh (or using your home computer)</a></li>
+<li><a href="#_directory_structure">1.4.3. Directory structure</a></li>
 </ul>
 </li>
 <li><a href="#_summary">1.5. Summary</a></li>
@@ -471,6 +472,17 @@ MathJax.Hub.Config({
 <li><a href="#_looking_at_the_first_analysis_in_qgis">2.3. Looking at the first analysis in QGIS</a></li>
 <li><a href="#_making_a_curvature_mask">2.4. Making a curvature mask</a></li>
 <li><a href="#_summary_2">2.5. Summary</a></li>
+</ul>
+</li>
+<li><a href="#_chi_mapping">3. Chi mapping</a>
+<ul class="sectlevel2">
+<li><a href="#_making_the_chi_tools">3.1. Making the chi tools</a></li>
+<li><a href="#_looking_at_the_chi_map_in_qgis">3.2. Looking at the chi map in QGIS</a>
+<ul class="sectlevel3">
+<li><a href="#_adding_csv_data">3.2.1. Adding csv data</a></li>
+</ul>
+</li>
+<li><a href="#_summary_3">3.3. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -735,12 +747,12 @@ $ mkdir Topographic_projects</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ cd Topographic_projects
-$ git clone https://github.com/LSDtopotools/LSDTopoTools_workshop_data.git</code></pre>
+$ git clone https://github.com/LSDtopotools/LSDTT_workshop_data.git</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>This will make a folder <code>LSDTT_workshop</code> into which you can place your own data. It also contains two test DEMs from Scotland that we will use in the Eroding Landscapes course.</p>
+<p>This will make a folder <code>LSDTT_workshop_data</code> into which you can place your own data. It also contains two test DEMs from Scotland that we will use in the Eroding Landscapes course.</p>
 </li>
 <li>
 <p>Now go back into your <code>Git_projects</code> directory. If you hve followed the above directions you will be sitting in the <code>Topographic_projects</code> directory so go up a level and then down into the <code>Git_projects</code> directory:</p>
@@ -752,7 +764,7 @@ $ cd Git_projects</code></pre>
 </div>
 </li>
 <li>
-<p>Now you need to clone some other repositores that have our code:</p>
+<p>Now you need to clone some other repositories that have our code:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver.git
@@ -776,7 +788,26 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_ChiMudd2014.git</code><
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Topographic_projects
-$ git clone https://github.com/LSDtopotools/LSDTopoTools_workshop_data.git LSDTT_workshop</code></pre>
+$ git clone https://github.com/LSDtopotools/LSDTT_workshop_data.git</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_directory_structure">1.4.3. Directory structure</h4>
+<div class="paragraph">
+<p>You directories should look like this after you have made them:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">/LSDTopoTools
+  |--Git_projects
+  |----LSDTopoTools_AnalysisDriver
+  |----LSDTopoTools_CRNBasinwide
+  |----LSDTopoTools_ChannelExtraction
+  |----LSDTopoTools_ChiMudd2014
+  |--Topographic_projects
+  |----LSDTT_workshop_data
+  |----Test_data</code></pre>
 </div>
 </div>
 </div>
@@ -1252,10 +1283,171 @@ write mask threshold: true</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_chi_mapping">3. Chi mapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section we will use the <a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver">LSDTopoTools analysis driver</a> program to calculate a map of chi (a greek letter pronounced "kai") and chi slope. Chi slope is an indicator of how sttep the channel is normalised for drainage area, and the chi coordinate by itself can be used to infer drainage capture and divide migration.</p>
+</div>
+<div class="sect2">
+<h3 id="_making_the_chi_tools">3.1. Making the chi tools</h3>
+<div class="paragraph">
+<p>If you have jumped directly here, LSDTopoTools is distributed as source code in C++, so you have to turn it into a program using a <a href="https://en.wikipedia.org/wiki/Compiler">compiler</a> and a program called <code>make</code>. Don&#8217;t worry; this is rather painless.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate into the <code>LSDTopoTools_ChiMudd2014</code> directory, and then into the subdirectory <code>driver_functions_MuddChi2014</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /path/to/LSDTopoTools/
+$ cd Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>/path/to/</code> bit can be replaced by your own path (in my case it is <code>/home/smudd/</code>). In vagrant this is simply <code>/</code> since our vagrant setup puts the <code>LSDTopoTools</code> directory within the root directory.</p>
+</div>
+</li>
+<li>
+<p>Then use <code>make</code> to compile the programs. You will get lots of warnings that can be ignored.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f chi_mapping_tool.make</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once you have done this, you should see a file called <code>LSDTT_analysis_from_paramfile.out</code> in this directory. That is the program we will use to make some new topographic data!</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in book/chi-analysis/chi-analysis.asc - include::sections/running-the-chi-analysis.asc[]</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_looking_at_the_chi_map_in_qgis">3.2. Looking at the chi map in QGIS</h3>
+<div class="paragraph">
+<p>Lets have a look at the results of the chi data in QGIS (again, steps will be similar in ArcMap).</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Again, In QGIS the add data button looks like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_add_data.jpg" alt="Add data">
+</div>
+<div class="title">Figure 10. Open raster data in QGIS</div>
+</div>
+</li>
+<li>
+<p>Find the data rasters and add them:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>WA_DArea.bil</code></p>
+</li>
+<li>
+<p><code>WA_SO.bil</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To change the sytling of these, see the section <a href="#_looking_at_the_first_analysis_in_qgis">Looking at the first analysis in QGIS</a>.</p>
+</li>
+<li>
+<p>Here is a coloured version of the stream order raster:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/WA_stream_order.jpg" alt="stream order">
+</div>
+<div class="title">Figure 11. Stream orders over the elevation raster of the Killmade Burn, Scotland</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_adding_csv_data">3.2.1. Adding csv data</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It is a bit more difficult to add csv data (csv stands for comma separated values). In QGIS, you need to click on the layer menu and then scroll to the <code>add text delimeted layer</code> button:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Add_csv_layer.jpg" alt="Add csv">
+</div>
+<div class="title">Figure 12. Add csv data</div>
+</div>
+</li>
+<li>
+<p>We will add the <code>WA_MChiSegmented.csv</code> layer. Once you select that file (using <code>browse</code>) you will see something like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Create_layer_menu.jpg" alt="Create layer">
+</div>
+<div class="title">Figure 13. Create layer menu</div>
+</div>
+</li>
+<li>
+<p>Hit okay. You will then be asked what <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system">coordinate system</a> you want. <strong>All csv data from LSDTopoTools is in the WGS84 coordinate system!</strong> Your rasters are typically in a local coordinate system but we convert point data to WGS84 so that they can be loaded onto web mapping platforms (i.e., Google Earth). The updshot is that you need to use WGS84 for the coordinate system.</p>
+</li>
+<li>
+<p>All coordinate systems have a code, called an EPSG code, and the EPSG code for WGS84 is <strong>4326</strong>: search for this (in the <code>Filter</code> form) and select it:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/EPSG_4325.jpg" alt="EPSG:4325">
+</div>
+<div class="title">Figure 14. Choose WGS 84 coordintate system with EPSG:4325</div>
+</div>
+</li>
+<li>
+<p>You should get something that looks like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/dots.jpg" alt="Chi point data">
+</div>
+<div class="title">Figure 15. Point data</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Sometimes you need to click in the little symbol that looks like a globe in the bottom right corner of QGIS an enable <code>on the fly CRS transformation</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Okay, this doesn&#8217;t look so great, right click on properties of the layer, choose <strong>graduated</strong> symbols, select the <code>m_chi</code> column (this is chi slope) pick a nice colour ramp, and then click on classify:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/M_chi_select.jpg" alt="Chi map">
+</div>
+<div class="title">Figure 16. Chi map coloured by chi steepness</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary_3">3.3. Summary</h3>
+<div class="paragraph">
+<p>By the end of this chapter you should have created a map of chi and chi slope, and loaded these data into QGIS for inspection.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-12 14:12:02 GMT Daylight Time
+Last updated 2016-10-27 13:54:46 GMT Daylight Time
 </div>
 </div>
 </body>
