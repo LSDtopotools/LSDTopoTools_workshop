@@ -450,9 +450,11 @@ MathJax.Hub.Config({
 </li>
 <li><a href="#_setting_up_directories">1.4. Setting up directories</a>
 <ul class="sectlevel3">
-<li><a href="#_directories_if_you_are_at_edinburgh">1.4.1. Directories if you are at Edinburgh</a></li>
-<li><a href="#_directories_if_you_are_outside_edinburgh_or_using_your_home_computer">1.4.2. Directories if you are outside Edinburgh (or using your home computer)</a></li>
-<li><a href="#_directory_structure">1.4.3. Directory structure</a></li>
+<li><a href="#_setting_up_directories_the_easy_way">1.4.1. Setting up directories the easy way</a></li>
+<li><a href="#_setting_up_directories_the_hard_way">1.4.2. Setting up directories the hard way</a></li>
+<li><a href="#_directories_the_hard_way_if_you_are_at_edinburgh">1.4.3. Directories the hard way if you are at Edinburgh</a></li>
+<li><a href="#_directories_the_hard_way_if_you_are_outside_edinburgh_or_using_your_home_computer">1.4.4. Directories the hard way if you are outside Edinburgh (or using your home computer)</a></li>
+<li><a href="#_directory_structure">1.4.5. Directory structure</a></li>
 </ul>
 </li>
 <li><a href="#_summary">1.5. Summary</a></li>
@@ -460,13 +462,18 @@ MathJax.Hub.Config({
 </li>
 <li><a href="#_simple_surface_metrics">2. Simple surface metrics</a>
 <ul class="sectlevel2">
-<li><a href="#_making_the_analysis_driver_program">2.1. Making the analysis driver program</a></li>
+<li><a href="#_making_the_analysis_driver_program">2.1. Making the analysis driver program</a>
+<ul class="sectlevel3">
+<li><a href="#_if_you_didn_t_use_code_lsdtopotoolssetup_py_code">2.1.1. If you didn&#8217;t use <code>LSDTopoToolsSetup.py</code></a></li>
+</ul>
+</li>
 <li><a href="#_running_your_first_analysis">2.2. Running your first analysis</a>
 <ul class="sectlevel3">
 <li><a href="#_looking_at_the_example_data">2.2.1. Looking at the example data</a></li>
 <li><a href="#_modifying_the_lsdtt_driver_file">2.2.2. Modifying the LSDTT_driver file</a></li>
-<li><a href="#_using_your_own_data">2.2.3. Using your own data</a></li>
-<li><a href="#_running_the_analysis">2.2.4. Running the analysis</a></li>
+<li><a href="#_checking_filenames_using_code_lsdtopotoolssetup_py_code">2.2.3. Checking filenames using <code>LSDTopoToolsSetup.py</code></a></li>
+<li><a href="#_using_your_own_data">2.2.4. Using your own data</a></li>
+<li><a href="#_running_the_analysis">2.2.5. Running the analysis</a></li>
 </ul>
 </li>
 <li><a href="#_looking_at_the_first_analysis_in_qgis">2.3. Looking at the first analysis in QGIS</a></li>
@@ -476,7 +483,12 @@ MathJax.Hub.Config({
 </li>
 <li><a href="#_chi_mapping">3. Chi mapping</a>
 <ul class="sectlevel2">
-<li><a href="#_making_the_chi_tools">3.1. Making the chi tools</a></li>
+<li><a href="#_making_the_chi_tools">3.1. Making the chi tools</a>
+<ul class="sectlevel3">
+<li><a href="#_making_chi_tools_using_lsdtopotoolssetup">3.1.1. Making chi tools using LSDTopoToolsSetup</a></li>
+<li><a href="#_making_chi_tools_using_code_make_code">3.1.2. Making chi tools using <code>make</code></a></li>
+</ul>
+</li>
 <li><a href="#_running_a_chi_analysis">3.2. Running a chi analysis</a>
 <ul class="sectlevel3">
 <li><a href="#_looking_at_parameter_file">3.2.1. Looking at parameter file</a></li>
@@ -515,15 +527,18 @@ MathJax.Hub.Config({
 <p>Research students and staff at the University of Edinburgh.</p>
 </li>
 <li>
-<p>Students taking Eroding Landscapes at the University of Edinburgh.</p>
+<p>Students taking Eroding Landscapes and other taught students (BSc, MSc, MEarthSci) at the University of Edinburgh.</p>
 </li>
 <li>
-<p>People from outside of Edinburgh who want to learn how to use LSDTopoTools.</p>
+<p>People from outside of Edinburgh who want to learn how to use <strong>LSDTopoTools</strong>.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>The main difference between these groups is that if you are at Edinburgh you can use our Linux servers and if you are not you will need to set up your own Linux server on your desktop computer or laptop using a clever bit of softwre called <a href="https://www.vagrantup.com/">Vagrant</a>. Don&#8217;t worry if that sounds a bit complex, we have instructions to walk you through the process, which works on any operating system (e.g., Windows, Linux, or MacOS) and is all based on open-source software.</p>
+<p>The main difference between these groups is that if you are at Edinburgh you can use our Linux servers and if you are not you will need to set up your own Linux server on your desktop computer or laptop using a clever bit of software called <a href="https://www.vagrantup.com/">Vagrant</a>. Don&#8217;t worry if that sounds a bit complex, we have instructions to walk you through the process, which works on any operating system (e.g., Windows, Linux, or MacOS) and is all based on open-source software.</p>
+</div>
+<div class="paragraph">
+<p>The only substantive difference between taught students and research students at Edinburgh is the amount of disk storage you are allocated on our servers. If you are a taught student and are going to be using large datasets you should either install <strong>LSDTopoTools</strong> on your own computer or talk to the GeoSciences IT team about getting more storage.</p>
 </div>
 <div class="sect2">
 <h3 id="_starting_up_at_edinburgh">1.1. Starting up at Edinburgh</h3>
@@ -590,7 +605,7 @@ MathJax.Hub.Config({
 <p>Make a folder for your vagrant box. We tend to put ours in a directory called <code>VagrantBoxes</code>.</p>
 </li>
 <li>
-<p>Inside that directory make two new directories: <code>LSDTopoTools</code> and <code>Ubuntu_vagrant</code>. The second directory&#8217;s name doens&#8217;t matter, it is just for holding a vagrant file (see below). However ytou <strong>MUST</strong> have the <code>LSDTopoTools</code> directory. The directory name is <strong>case sensitive</strong>!</p>
+<p>Inside that directory make two new directories: <code>LSDTopoTools</code> and <code>Ubuntu_vagrant</code>. The second directory&#8217;s name doesn&#8217;t matter, it is just for holding a vagrant file (see below). However you <strong>MUST</strong> have the <code>LSDTopoTools</code> directory. The directory name is <strong>case sensitive</strong>!</p>
 </li>
 <li>
 <p>Download one of our vagrantfiles: <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles" class="bare">https://github.com/LSDtopotools/LSDTT_vagrantfiles</a> into the <code>Ubuntu_vagrant</code> directory (again, the name of the directory doesn&#8217;t matter).</p>
@@ -639,13 +654,133 @@ If you are running <code>vagrant up</code> for the first time it can take some t
 <div class="sect2">
 <h3 id="_setting_up_directories">1.4. Setting up directories</h3>
 <div class="paragraph">
-<p>This is <strong>ESSENTIAL</strong>. If you don&#8217;t know where your files are it will lead to extreme frustration! You will need to work with files and directories in Linux. There is a <a href="http://lsdtopotools.github.io/LSDTT_book/#_setting_up_your_file_system_and_keeping_it_clean_strong_essential_reading_if_you_are_new_to_linux_strong">entire section in our book</a> about this.</p>
+<p><strong>LSDTopoTools</strong> expects your data to be organised in a certain way. You can either do this yourself by hand (we will call this the "hard way") or use a python script we have prepared ("easy way"). If you follow directions to set up the easy way you don&#8217;t need to follow instructions for the hard way.</p>
+</div>
+<div class="sect3">
+<h4 id="_setting_up_directories_the_easy_way">1.4.1. Setting up directories the easy way</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you just plan on using our tools this section describes the best way to set up <strong>LSDTopoTools</strong>. You only need to read the sections about doing things the hard way if you are going to develop our software, or are going to be using new releases of our research code.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Easy setup quick start</div>
+<div class="paragraph">
+<p>If you just want to get started with the standard setup without any details, do the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go into a Linux terminal. You will need <a href="https://www.python.org/">python</a> but this is now standard on most Linux distribution so we will assume you have it.</p>
+</li>
+<li>
+<p>Get the python setup tool:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ wget https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the setup tool:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 0</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You are ready to go!!</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The first thing you need to do is get our python program <strong>LSDTopoToolsSetUp.py</strong>. It lives here: <a href="https://github.com/LSDtopotools/LSDAutomation/blob/master/LSDTopoToolsSetup.py" class="bare">https://github.com/LSDtopotools/LSDAutomation/blob/master/LSDTopoToolsSetup.py</a></p>
+<div class="paragraph">
+<p>You will need to run this file in your Linux environment, so in a terminal window type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ wget https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If <code>wget</code> doesn&#8217;t work, you can follow the link:
+<a href="https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py" class="bare">https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</a>
+Copy the text, paste it into a text editor and save it as <code>LSDTopoToolsSetup.py</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Now, in your terminal window run this script. It has some options:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For the most basic setup, type:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 0</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>The crucial thing is that we will have deparate directories for <strong>DATA</strong> and <strong>PROGRAMS</strong>. So you will need to make directories for these.</p>
+<p>In our Vagrant setup, this will install everything in the root directory (you can got there with <code>$ cd /</code>),  which is the default setup generated by our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">Vagrantfile</a>. If you are not in vagrant the <strong>LSDTopoTools</strong> directories will be in your home directory (you can get there with <code>$ cd ~</code>).</p>
+</div>
+</li>
+<li>
+<p>If you don&#8217;t want <strong>LSDTopoTools</strong> in your home directory, you can install it in your current directory with:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 1</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>It turns out the <code>LSDTopoToolsSetup.py</code> tool has a number of options but we will explain these later. If you want a preview of what it does, you can call its help options:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -h</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_setting_up_directories_the_hard_way">1.4.2. Setting up directories the hard way</h4>
+<div class="paragraph">
+<p>Our script <code>LSDTopoToolsSetup.py</code> automates creation of the correct directories and installing the LSDTopoTools programs. If you have used that script you don&#8217;t really need to read this, but if you are unfamiliar with Linux at some point you will need to come to terms with the way our directories are structured, how to move between directories, finding things in directories, etc., so you might consider reading this section when you have the chance.</p>
 </div>
 <div class="paragraph">
-<p>For the purposes of this workshop, we will use a standardised directory structure. If you <strong>NOT</strong> at Edinburgh and using our vagrant setup, then this structure already exists!! If you are at Edinburgh you will need to make this structure.</p>
+<p>Understanding where your files are is <strong>ESSENTIAL</strong>. If you don&#8217;t know where your files are it will lead to extreme frustration! You will need to work with files and directories in Linux. There is an <a href="http://lsdtopotools.github.io/LSDTT_book/#_setting_up_your_file_system_and_keeping_it_clean_strong_essential_reading_if_you_are_new_to_linux_strong">entire section in our book</a> about this.</p>
+</div>
+<div class="paragraph">
+<p>The crucial thing is that we will have separate directories for <strong>DATA</strong> and <strong>PROGRAMS</strong>. So you will need to make directories for these.</p>
+</div>
+<div class="paragraph">
+<p>For the purposes of this workshop, we will use a standardised directory structure. If you <strong>NOT</strong> at Edinburgh and using our vagrant setup, then this structure already exists!! If you are at Edinburgh you will need to make this structure. This is automated by the script <code>LSDTopoToolsSetup.py</code> but these instructions are here in case you want to do it by hand.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -686,8 +821,9 @@ In Linux, to find out your current directory type the command <code>pwd</code>.
 </div>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_directories_if_you_are_at_edinburgh">1.4.1. Directories if you are at Edinburgh</h4>
+<h4 id="_directories_the_hard_way_if_you_are_at_edinburgh">1.4.3. Directories the hard way if you are at Edinburgh</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -761,7 +897,7 @@ $ git clone https://github.com/LSDtopotools/LSDTT_workshop_data.git</code></pre>
 <p>This will make a folder <code>LSDTT_workshop_data</code> into which you can place your own data. It also contains two test DEMs from Scotland that we will use in the Eroding Landscapes course.</p>
 </li>
 <li>
-<p>Now go back into your <code>Git_projects</code> directory. If you hve followed the above directions you will be sitting in the <code>Topographic_projects</code> directory so go up a level and then down into the <code>Git_projects</code> directory:</p>
+<p>Now go back into your <code>Git_projects</code> directory. If you have followed the above directions you will be sitting in the <code>Topographic_projects</code> directory so go up a level and then down into the <code>Git_projects</code> directory:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ cd ..
@@ -787,9 +923,9 @@ $ git clone https://github.com/LSDtopotools/LSDTopoTools_ChiMudd2014.git</code><
 </div>
 </div>
 <div class="sect3">
-<h4 id="_directories_if_you_are_outside_edinburgh_or_using_your_home_computer">1.4.2. Directories if you are outside Edinburgh (or using your home computer)</h4>
+<h4 id="_directories_the_hard_way_if_you_are_outside_edinburgh_or_using_your_home_computer">1.4.4. Directories the hard way if you are outside Edinburgh (or using your home computer)</h4>
 <div class="paragraph">
-<p>If you have set up using our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>, the correct directory structre is already in place. However you will need to clone the data for this workshop:</p>
+<p>If you have set up using our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>, the correct directory structure is already in place. However you will need to clone the data for this workshop:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -799,9 +935,26 @@ $ git clone https://github.com/LSDtopotools/LSDTT_workshop_data.git</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_directory_structure">1.4.3. Directory structure</h4>
+<h4 id="_directory_structure">1.4.5. Directory structure</h4>
 <div class="paragraph">
-<p>You directories should look like this after you have made them:</p>
+<p>If you did this the easy way, you will have directories that look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">/LSDTopoTools
+  |--Git_projects
+  |----LSDTopoTools_AnalysisDriver
+  |----LSDTopoTools_ChiMudd2014
+  |--Topographic_projects
+  |----LSDTT_workshop_data
+  |----Test_data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you are in vagrant, the <code>/LSDTopoTools</code> directory will be in the root directory, whereas if you are in another system it will be in your home directory (which you can get to with <code>cd ~</code>), unless you told the setup tool to install in your current directory.</p>
+</div>
+<div class="paragraph">
+<p>If you setup the hard way, you will have a few extra things (which the setup tool gets with some optional instructions):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -835,7 +988,15 @@ $ git clone https://github.com/LSDtopotools/LSDTT_workshop_data.git</code></pre>
 <div class="sect2">
 <h3 id="_making_the_analysis_driver_program">2.1. Making the analysis driver program</h3>
 <div class="paragraph">
-<p>LSDTopoTools is distributed as source code in C++, so you have to turn it into a program using a <a href="https://en.wikipedia.org/wiki/Compiler">compiler</a> and a program called <code>make</code>. Don&#8217;t worry; this is rather painless.</p>
+<p>LSDTopoTools is distributed as source code in C++, so you have to turn it into a program using a <a href="https://en.wikipedia.org/wiki/Compiler">compiler</a> and a program called <code>make</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you used <code>LSDTopoToolsSetup.py</code>, all of that <code>make</code> stuff will have just happened automatically. You can skip past this section!</p>
+</div>
+<div class="sect3">
+<h4 id="_if_you_didn_t_use_code_lsdtopotoolssetup_py_code">2.1.1. If you didn&#8217;t use <code>LSDTopoToolsSetup.py</code></h4>
+<div class="paragraph">
+<p>If you didn&#8217;t use <code>LSDTopoToolsSetup.py</code>, you need to use <code>make</code> yourself. If you have some familiarity with Linux then this should be rather painless.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -875,6 +1036,7 @@ $ cd Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver</code></pre>
 <p>Once you have done this, you should see a file called <code>LSDTT_analysis_from_paramfile.out</code> in this directory. That is the program we will use to make some new topographic data!</p>
 </li>
 </ol>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -923,7 +1085,7 @@ WA.hdr      Workshop_AD_example.LSDTT_driver</code></pre>
 <div class="content">
 <div class="title">Editing text files</div>
 <div class="paragraph">
-<p>We have parameter files (sometimes called <code>driver</code> files) that tell LSDTopoTools what data to look for, what analyses to do, etc. You will need to modify these files. You need a <strong>text editor</strong> to do this. You <strong>CANNOT</strong> usa a word processor (like Word or Wordpad) since it inserts a load of formatting. You just need something that changes plain text without any fuss.</p>
+<p>We have parameter files (sometimes called <code>driver</code> files) that tell LSDTopoTools what data to look for, what analyses to do, etc. You will need to modify these files. You need a <strong>text editor</strong> to do this. You <strong>CANNOT</strong> use a word processor (like Word or Wordpad) since it inserts a load of formatting. You just need something that changes plain text without any fuss.</p>
 </div>
 <div class="paragraph">
 <p>You can edit text in Linux using <a href="https://www.gnu.org/software/emacs/">emacs</a> or <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">vim</a>, but these are not great for people uncomfortable in Linux.</p>
@@ -934,10 +1096,10 @@ WA.hdr      Workshop_AD_example.LSDTT_driver</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>At Edinburgh, you can map your network drives so you can see files on our linux servers and in your Windows or MacOS desktop. So edit your files there.</p>
+<p>At Edinburgh, you can map your network drives so you can see files on our Linux servers and in your Windows or MacOS desktop. So edit your files there.</p>
 </li>
 <li>
-<p>Outside Edinburgh, you should be using our Vagrant setup, and in that case files are synced between your linux server and your native operating system so you can use a local text editor.</p>
+<p>Outside Edinburgh, you should be using our Vagrant setup, and in that case files are synced between your Linux server and your native operating system so you can use a local text editor.</p>
 </li>
 </ul>
 </div>
@@ -1043,7 +1205,21 @@ If you are using vagrant the directories will work without any modification.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_using_your_own_data">2.2.3. Using your own data</h4>
+<h4 id="_checking_filenames_using_code_lsdtopotoolssetup_py_code">2.2.3. Checking filenames using <code>LSDTopoToolsSetup.py</code></h4>
+<div class="paragraph">
+<p>The python script <code>LSDTopoToolsSetup.py</code>, which you can read about <a href="#_setting_up_directories_the_easy_way">here</a>, allows you to check the directories of your files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 0 -cp True</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you called this script with <code>-id 1</code> the first time you will need to do that again. Calling it with <code>-cp True</code> will go through all of the directories in the <code>\LSDTopoTools\TopoTgraphic_projects</code> folder modifying any files with extension <code>.driver</code> or <code>.LSDTT_driver</code>, updating the <code>read path:</code> and <code>write_path</code> entries with the correct path names.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_using_your_own_data">2.2.4. Using your own data</h4>
 <div class="paragraph">
 <p>If you use your own data you need to make sure it is in the correct format. You can read all about that <a href="http://lsdtopotools.github.io/LSDTT_book/#_preparing_your_data">in our main documentation</a>. But the main points are:</p>
 </div>
@@ -1059,7 +1235,7 @@ If you are using vagrant the directories will work without any modification.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_running_the_analysis">2.2.4. Running the analysis</h4>
+<h4 id="_running_the_analysis">2.2.5. Running the analysis</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1191,7 +1367,7 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 <div class="content">
 <img src="images/QGIS_new_colour_ramp.jpg" alt="New colour ramp">
 </div>
-<div class="title">Figure 7. Selecting a colour ramp (including laoding new ones)</div>
+<div class="title">Figure 7. Selecting a colour ramp (including loading new ones)</div>
 </div>
 </li>
 <li>
@@ -1213,7 +1389,7 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 </div>
 </li>
 <li>
-<p>If you want to make layers transparent, right click on the raster layer, select <strong>preperties</strong>, and select the <strong>transparency</strong> tab.</p>
+<p>If you want to make layers transparent, right click on the raster layer, select <strong>properties</strong>, and select the <strong>transparency</strong> tab.</p>
 </li>
 </ol>
 </div>
@@ -1224,27 +1400,20 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 <p>In this next step we will use the curvature data to make a masked plot. Curvature is a metric that tells us about where there are fluvial vs hillslope processes happening in a landscape, and has been used to <a href="http://onlinelibrary.wiley.com/doi/10.1029/2011JF002057/abstract">infer erosion rates</a>.</p>
 </div>
 <div class="paragraph">
-<p>For this, we will use a the <strong>LSDTopoTools_AnalysisDriver</strong> once again.</p>
+<p>For this, we will use the <strong>LSDTopoTools_AnalysisDriver</strong> once again.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>First, go into your data directory and make a renamed copy of the driver file:</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ cp Workshop_AD_example.LSDTT_driver Mask_example.LSDTT_driver</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>+
-. Now you just need to adjust a few parameters:</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
+</li>
+<li>
+<p>Now you just need to adjust a few parameters:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># This is a driver file for LSDTopoTools
@@ -1268,17 +1437,17 @@ mask_nodataisbelowthreshold: 0
 write mask threshold: true</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>+
-. The differences here are that you are using the <code>WAWater_curvature</code> raster instead of the DEM, that you are trying to write a mask threshold, and you are going to turn anything that is over the threshold value of 0 into a <code>nodata</code> (that is, you tell the computer it doesn&#8217;t have any data there).</p>
-</div>
-<div class="paragraph">
-<p>+
-. You can change this around a bit: if you run <code>mask_nodataisbelowthreshold: 1</code> it means anything below the threshold is masked, and you can change the threshold value by changing <code>mask_threshold:</code>.</p>
-</div>
-<div class="paragraph">
-<p>+
-. Once you have done this try loading into QGIS and looking at this data over the hillshade using transparency.</p>
+</li>
+<li>
+<p>The differences here are that you are using the <code>WAWater_curvature</code> raster instead of the DEM, that you are trying to write a mask threshold, and you are going to turn anything that is over the threshold value of 0 into a <code>nodata</code> (that is, you tell the computer it doesn&#8217;t have any data there).</p>
+</li>
+<li>
+<p>You can change this around a bit: if you run <code>mask_nodataisbelowthreshold: 1</code> it means anything below the threshold is masked, and you can change the threshold value by changing <code>mask_threshold:</code>.</p>
+</li>
+<li>
+<p>Once you have done this try loading into QGIS and looking at this data over the hillshade using transparency.</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
@@ -1293,12 +1462,51 @@ write mask threshold: true</code></pre>
 <h2 id="_chi_mapping">3. Chi mapping</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this section we will use the <a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver">LSDTopoTools analysis driver</a> program to calculate a map of chi (a greek letter pronounced "kai") and chi slope. Chi slope is an indicator of how sttep the channel is normalised for drainage area, and the chi coordinate by itself can be used to infer drainage capture and divide migration.</p>
+<p>In this section we will use the <a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver">LSDTopoTools analysis driver</a> program to calculate a map of chi (a Greek letter pronounced "kai") and chi slope. Chi slope is an indicator of how steep the channel is normalised for drainage area, and the chi coordinate by itself can be used to infer drainage capture and divide migration.</p>
 </div>
 <div class="sect2">
 <h3 id="_making_the_chi_tools">3.1. Making the chi tools</h3>
 <div class="paragraph">
-<p>If you have jumped directly here, LSDTopoTools is distributed as source code in C++, so you have to turn it into a program using a <a href="https://en.wikipedia.org/wiki/Compiler">compiler</a> and a program called <code>make</code>. Don&#8217;t worry; this is rather painless.</p>
+<p>If you have jumped directly here, LSDTopoTools is distributed as source code in C++, so you have to turn it into a program using a <a href="https://en.wikipedia.org/wiki/Compiler">compiler</a> and a program called <code>make</code>. There is an easy way to do this, using a python script called <a href="https://github.com/LSDtopotools/LSDAutomation/blob/master/LSDTopoToolsSetup.py">LSDTopoToolsSetup.py</a>, or you can do it one step at a time using <code>make</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_making_chi_tools_using_lsdtopotoolssetup">3.1.1. Making chi tools using LSDTopoToolsSetup</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you followed the directions on <a href="#_setting_up_directories_the_easy_way">setting up directories the easy way</a>, you will already have the chi tools set up!</p>
+</li>
+<li>
+<p>If you haven&#8217;t already set things up with this file, download it and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 0</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Doing this will set up <strong>LSDTopoTools</strong> in the root directory (in Vagrant) or in your home directory (in any other Linux system). In vagrant, to get to the root just type:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To get to your home directory just type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd ~</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_making_chi_tools_using_code_make_code">3.1.2. Making chi tools using <code>make</code></h4>
+<div class="paragraph">
+<p>The python script <code>LSDTopoToolsSetup.py</code> automates compilation of our source code, but in some cases you might want to compile things on your own (particularly if you start making changes to the source code).</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1326,6 +1534,7 @@ $ cd Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014</code></
 <p>Once you have done this, you should see a file called <code>LSDTT_analysis_from_paramfile.out</code> in this directory. That is the program we will use to make some new topographic data!</p>
 </li>
 </ol>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1398,7 +1607,19 @@ read fname: WA</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You need to update these lines with your own directory structres. The <code>read name:</code> gives the prefix of the DEM. If you want the bigger dem, weplace <code>WA</code> with <code>WAWater</code>.</p>
+<p>You need to update these lines with your own directory structures. The <code>read name:</code> gives the prefix of the DEM. If you want the bigger dem, replace <code>WA</code> with <code>WAWater</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can update the read an write paths to reflect your own directory structure by running <code>python LSDTopoToolsSetup.py -id 0 -cp True</code>
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
@@ -1456,7 +1677,7 @@ print_simple_chi_map_to_csv: true</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you&#8217;ve done the analysis driver excercise, this should be familiar.</p>
+<p>If you&#8217;ve done the analysis driver exercise, this should be familiar.</p>
 </li>
 <li>
 <p>Go into the directory where you compiled the <strong>chi tool</strong> and run:</p>
@@ -1476,12 +1697,12 @@ print_simple_chi_map_to_csv: true</code></pre>
 <div class="sect2">
 <h3 id="_looking_at_the_chi_map_in_qgis">3.3. Looking at the chi map in QGIS</h3>
 <div class="paragraph">
-<p>Lets have a look at the results of the chi data in QGIS (again, steps will be similar in ArcMap).</p>
+<p>One we run the analysis, we can have a look at the results in QGIS. The teps will be similar in ArcMap, but we show QGIS here since it is open source.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Again, In QGIS the add data button looks like this:</p>
+<p>In QGIS the add data button looks like this:</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/QGIS_add_data.jpg" alt="Add data">
@@ -1503,7 +1724,7 @@ print_simple_chi_map_to_csv: true</code></pre>
 </div>
 </li>
 <li>
-<p>To change the sytling of these, see the section <a href="#_looking_at_the_first_analysis_in_qgis">Looking at the first analysis in QGIS</a>.</p>
+<p>To change the styling of these, see the section <a href="#_looking_at_the_first_analysis_in_qgis">Looking at the first analysis in QGIS</a>.</p>
 </li>
 <li>
 <p>Here is a coloured version of the stream order raster:</p>
@@ -1539,7 +1760,7 @@ print_simple_chi_map_to_csv: true</code></pre>
 </div>
 </li>
 <li>
-<p>Hit okay. You will then be asked what <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system">coordinate system</a> you want. <strong>All csv data from LSDTopoTools is in the WGS84 coordinate system!</strong> Your rasters are typically in a local coordinate system but we convert point data to WGS84 so that they can be loaded onto web mapping platforms (i.e., Google Earth). The updshot is that you need to use WGS84 for the coordinate system.</p>
+<p>Hit okay. You will then be asked what <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system">coordinate system</a> you want. <strong>All csv data from LSDTopoTools is in the WGS84 coordinate system!</strong> Your rasters are typically in a local coordinate system but we convert point data to WGS84 so that they can be loaded onto web mapping platforms (i.e., Google Earth). The upshot is that you need to use WGS84 for the coordinate system.</p>
 </li>
 <li>
 <p>All coordinate systems have a code, called an EPSG code, and the EPSG code for WGS84 is <strong>4326</strong>: search for this (in the <code>Filter</code> form) and select it:</p>
@@ -1595,7 +1816,7 @@ Sometimes you need to click in the little symbol that looks like a globe in the 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-27 13:54:46 GMT Daylight Time
+Last updated 2016-10-29 07:09:58 GMT Daylight Time
 </div>
 </div>
 </body>
