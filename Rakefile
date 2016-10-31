@@ -14,7 +14,7 @@ namespace :book do
     puts " -- HTML output at LSDTT_workshop.html"
 
     puts "Converting to PDF... (this one takes a while)"
-    `bundle exec asciidoctor-pdf LSDTT_workshop.asc -o LSDTT_workshop.html`
+    `bundle exec asciidoctor-pdf LSDTT_workshop.asc -o LSDTT_workshop.pdf`
     puts " -- PDF  output at LSDTT_workshop.pdf"
   end
   
