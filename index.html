@@ -477,7 +477,11 @@ MathJax.Hub.Config({
 </ul>
 </li>
 <li><a href="#_looking_at_the_first_analysis_in_qgis">2.3. Looking at the first analysis in QGIS</a></li>
-<li><a href="#_making_a_curvature_mask">2.4. Making a curvature mask</a></li>
+<li><a href="#_making_a_curvature_mask">2.4. Making a curvature mask</a>
+<ul class="sectlevel3">
+<li><a href="#_run_the_mask">2.4.1. Run the mask</a></li>
+</ul>
+</li>
 <li><a href="#_summary_2">2.5. Summary</a></li>
 </ul>
 </li>
@@ -501,6 +505,24 @@ MathJax.Hub.Config({
 </ul>
 </li>
 <li><a href="#_summary_3">3.4. Summary</a></li>
+</ul>
+</li>
+<li><a href="#_using_the_lsdtopotoolssetup_py_script">Appendix A: Using the LSDTopoToolsSetup.py script</a>
+<ul class="sectlevel2">
+<li><a href="#_getting_the_lsdtopotools_setup_script">A.1. Getting the LSDTopoTools setup script</a>
+<ul class="sectlevel3">
+<li><a href="#_alternatives_to_wget">A.1.1. Alternatives to wget</a></li>
+</ul>
+</li>
+<li><a href="#_running_the_lsdtopotools_setup_script">A.2. Running the LSDTopoTools setup script</a>
+<ul class="sectlevel3">
+<li><a href="#_looking_at_all_the_lsdtopotoolssetup_options">A.2.1. Looking at all the LSDTopoToolsSetup options</a></li>
+<li><a href="#_a_default_setup">A.2.2. A default setup</a></li>
+<li><a href="#_other_setup_options">A.2.3. Other setup options</a></li>
+<li><a href="#_if_you_are_running_on_native_linux">A.2.4. If you are running on native Linux</a></li>
+</ul>
+</li>
+<li><a href="#_table_of_lsdtopotoolssetup_py_options">A.3. Table of LSDTopoToolsSetup.py options</a></li>
 </ul>
 </li>
 </ul>
@@ -596,7 +618,7 @@ MathJax.Hub.Config({
 <p>Download and install <a href="https://www.virtualbox.org/">virtualbox</a>.</p>
 </li>
 <li>
-<p>Download and install <a href="https://www.virtualbox.org/">vagrant</a>. You might have to restart your computer after this.</p>
+<p>Download and install <a href="https://www.vagrantup.com/">vagrant</a>. You might have to restart your computer after this.</p>
 </li>
 <li>
 <p>If you are on Windows, download <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a>. If you are on Linux or MacOS you can skip this (they have built-in equivalents).</p>
@@ -1402,10 +1424,77 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 <div class="paragraph">
 <p>For this, we will use the <strong>LSDTopoTools_AnalysisDriver</strong> once again.</p>
 </div>
+<div class="paragraph">
+<p>Sadly, the <code>WAWater.bil</code> raster is produced from data that is not amenable to a good curvature map. It is produced by the Ordinance Survey using a <a href="https://en.wikipedia.org/wiki/Triangulated_irregular_network">TIN</a> and so the landscape is made up of triangular facets that have anomolous curvature values at the intersections and no curvature on the faces.</p>
+</div>
+<div class="paragraph">
+<p>You will need to run curvature on the <code>WA.bil</code> DEM instead. So make a copy of the driver file:</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cp Workshop_AD_example.LSDTT_driver Workshop_WA_example.LSDTT_driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+
+. Now you just need to adjust a few parameters:</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console"># This is a driver file for LSDTopoTools
+# Any lines with the # symbol in the first row will be ignored
+
+# File information
+# IMPORTANT: you will need to modify the file path to reflect your directory structure
+# NOTE: If you want to use a smaller test DEM use WA instead of WAWater
+dem read extension: bil
+dem write extension: bil
+read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WA
+write fname: WA
+
+# Parameters for various topographic analysis
+min_slope_for_fill: 0.0001
+
+# Parameters for polyfit and slope calculations
+polyfit_window_radius: 19
+slope_method: polyfit
+
+# The different analyses to be run
+write hillshade: true
+write slope: true
+write curvature: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+
+. Now run this file:</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./LSDTT_analysis_from_paramfile.out /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/ Workshop_WA_example.LSDTT_driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+
+. Once you&#8217;ve done this you should have a DEM called <code>WA_curvature</code></p>
+</div>
+<div class="sect3">
+<h4 id="_run_the_mask">2.4.1. Run the mask</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>First, go into your data directory and make a renamed copy of the driver file:</p>
+<p>First, go into your data directory and make a another copy of the driver file:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ cp Workshop_AD_example.LSDTT_driver Mask_example.LSDTT_driver</code></pre>
@@ -1426,8 +1515,8 @@ dem read extension: bil
 dem write extension: bil
 read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
 write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
-read fname: WAWater_curvature
-write fname: WAWater_curvature
+read fname: WA_curvature
+write fname: WA_curvature
 
 # Parameters for masking
 mask_threshold: 0
@@ -1439,15 +1528,16 @@ write mask threshold: true</code></pre>
 </div>
 </li>
 <li>
-<p>The differences here are that you are using the <code>WAWater_curvature</code> raster instead of the DEM, that you are trying to write a mask threshold, and you are going to turn anything that is over the threshold value of 0 into a <code>nodata</code> (that is, you tell the computer it doesn&#8217;t have any data there).</p>
+<p>The differences here are that you are using the <code>WA_curvature</code> raster instead of the DEM, that you are trying to write a mask threshold, and you are going to turn anything that is over the threshold value of 0 into a <code>nodata</code> (that is, you tell the computer it doesn&#8217;t have any data there).</p>
 </li>
 <li>
 <p>You can change this around a bit: if you run <code>mask_nodataisbelowthreshold: 1</code> it means anything below the threshold is masked, and you can change the threshold value by changing <code>mask_threshold:</code>.</p>
 </li>
 <li>
-<p>Once you have done this try loading into QGIS and looking at this data over the hillshade using transparency.</p>
+<p>Once you have done this try loading into QGIS and looking at this data over the hillshade using transparency (in the <strong>properties</strong> menu: right-click on the layer).</p>
 </li>
 </ol>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1813,10 +1903,202 @@ Sometimes you need to click in the little symbol that looks like a globe in the 
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_using_the_lsdtopotoolssetup_py_script">Appendix A: Using the LSDTopoToolsSetup.py script</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To help you set up <strong>LSDTopoTools</strong>, we have written a series of modules in <a href="https://www.python.org/">python</a> that automate the creation of our standard directory structure, downloading of the source code and compiling the source code into programs. The script is called <a href="https://github.com/LSDtopotools/LSDAutomation/blob/master/LSDTopoToolsSetup.py">LSDTopoToolsSetup.py</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_getting_the_lsdtopotools_setup_script">A.1. Getting the LSDTopoTools setup script</h3>
+<div class="paragraph">
+<p>LSDTopoTools works in all popular operating systems (Windows, MacOS, Linux) by using <a href="https://www.vagrantup.com/">Vagrant</a> to create a Linux server within your host operating system: if you are not in a native Linux environment you should start a Vagrant server by <a href="http://lsdtopotools.github.io/LSDTT_book/#_installing_lsdtopotools_using_virtualbox_and_vagrant">following these directions</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once you have done that, you should be able to <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a> into a Linux session using <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a> on Windows or the <code>vagrant ssh</code> command in MacOS and Linux.</p>
+</div>
+<div class="paragraph">
+<p>Once you are in a Linux operating system, the easiest way to get the script is to use the utility <code>wget</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alternatives_to_wget">A.1.1. Alternatives to wget</h4>
+<div class="paragraph">
+<p>You can also get the script by cloning the LSDAutomation repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDAutomation.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or you can got to the <a href="https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py">raw text of the file</a>, then copy the text and paste into your favourite text editor (i.e. <a href="http://brackets.io/">Brackets</a>). You should save the file as <code>LSDTopoToolsSetup.py</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_the_lsdtopotools_setup_script">A.2. Running the LSDTopoTools setup script</h3>
+<div class="paragraph">
+<p>The setup script is a python script so you need python to run it. It should be run <strong>in Linux</strong>, so if you do not have a native Linux operating system the script should be run in your Vagrant server. Almost all flavours of Linux come with python installed as default (the Ubuntu system installed by our vagrantfiles is one example) so we will assume you have python.</p>
+</div>
+<div class="paragraph">
+<p>The script requires parameters; if you run the script with no parameters, it will give you a message telling you what to do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py
+
+=======================================================================
+Hello there, I am the going to help you set up LSDTopoTools!
+You will need to tell me what to do.
+If you are in vagrant, LSDTopoTools will always be installed in the root directory (\).
+If you are not in vagrant,
+LSDTopoTools will be installed in your home directory if you run this with:
+   python LSDTopoToolsSetup.py -id 0
+
+Or your current directory.
+(i.e., the directory from which you called this program)
+
+if you run with this:
+   python LSDTopoToolsSetup.py -id 1
+
+For help type:
+   python LSDTopoToolsSetup.py -h
+
+=======================================================================</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_looking_at_all_the_lsdtopotoolssetup_options">A.2.1. Looking at all the LSDTopoToolsSetup options</h4>
+<div class="paragraph">
+<p>You can call help for the <code>LSDTopoToolsSetup.py</code> script with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -h</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_a_default_setup">A.2.2. A default setup</h4>
+<div class="paragraph">
+<p>In fact, there is no default setup, since you have to tell the tool where to install <strong>LSDTopoTools</strong>. You do this by using the <code>-id</code> flag.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you select 0, LSDTopoTools will be installed in your home directory, which you can get to with the command <code>cd ~</code>.</p>
+</li>
+<li>
+<p>If you select 1, LSDTopoTools will be installed in the current directory (i.e. the directory where the script is located).</p>
+</li>
+<li>
+<p>If you are running a vagrant machine, these instructions will be ignored and LSDTopoTools will be installed in the root directory (you can get there with the command <code>cd \</code>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will install a directory <code>LSDTopoTools</code> with subdirectories <code>Git_projects</code> and <code>Topographic_projects</code>. Each of these folders will clone subfolders from our github pages, and will compile the <strong>Analysis_driver</strong> as well as the <strong>chi_tool</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The directories will look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">/LSDTopoTools
+  |--Git_projects
+  |----LSDTopoTools_AnalysisDriver
+  |----LSDTopoTools_ChiMudd2014
+  |--Topographic_projects
+  |----LSDTT_workshop_data
+  |----Test_data</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_other_setup_options">A.2.3. Other setup options</h4>
+<div class="paragraph">
+<p>There are a number of other options on <code>LSDTopoToolsSetup.py</code>, which we will list here, as well as in the <a href="#_table_of_lsdtopotoolssetup_py_options">table below</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-CE True</code> Clone and compile the channel extraction programs used in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013WR015167/abstract">Clubb et al, WRR, 2014</a>.</p>
+</li>
+<li>
+<p><code>-MChi True</code> Clone and compile the tools for performing the chi analysis of <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES, 2014</a>.</p>
+</li>
+<li>
+<p><code>-CRN True</code> Clone and compile the tools for calculating basinwide denudation rates from the cosmogenic nuclides <sup>10</sup>Be and <sup>26</sup>Al <a href="http://www.earth-surf-dynam.net/4/655/2016/">Mudd et al., ESURF, 2016</a>.</p>
+</li>
+<li>
+<p><code>-cp True</code> Check the path names in all the subfolders in <code>Topographic_projects</code> to reflect your own directory structure.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_if_you_are_running_on_native_linux">A.2.4. If you are running on native Linux</h4>
+<div class="paragraph">
+<p>If your native operating system is Linux, you should be able to get <strong>LSDTopoTools</strong> working very quickly using <code>LSDTopoToolsSetup.py</code> without having to use vagrant. However, you do need to ensure that you have the utilities <code>make</code>, the gnu Pass:[C++] compiler installed, and also you need <a href="http://www.fftw.org/">FFTW</a> installed. If you are in Ubuntu installing FFTW is as easy as: <code>sudo apt-get install -y libfftw3-dev</code>. If you are in another flavour of Linux you will need to follow the full setup, which is described on the <a href="http://www.fftw.org/">FFTW website</a>. Once you have that stuff working, you can use <code>LSDTopoToolsSetup.py</code> to get everything working in a jiffy.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_table_of_lsdtopotoolssetup_py_options">A.3. Table of LSDTopoToolsSetup.py options</h3>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Installation directory options</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flag</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer, either 0 or 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0 == home directory, 1 == current directory. If you are in vagrant it will ignore this option and install in the root directory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-CRN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True, installs the CAIRN CRN package for calculating basinwide denudation rates from the cosmogenic nuclides <sup>10</sup>Be and <sup>26</sup>Al <a href="http://www.earth-surf-dynam.net/4/655/2016/">Mudd et al., ESURF, 2016</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-CE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True, installs the channel extraction programs used in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013WR015167/abstract">Clubb et al, WRR, 2014</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-MChi</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True, installs the tools for performing the chi analysis of <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES, 2014</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-cp</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True,  checks the pathnames of the parameter files <code>.driver</code> and <code>.LSDTT_driver</code> in all the subfolders of <code>Topographic_projects</code> and corrects them so they reflect the user&#8217;s directory structure.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-29 07:09:58 GMT Daylight Time
+Last updated 2016-10-31 11:52:55 GMT Standard Time
 </div>
 </div>
 </body>
