@@ -533,7 +533,7 @@ MathJax.Hub.Config({
 <h2 id="_preface_by_simon_m_mudd">Preface by Simon M Mudd</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Welcome to a series of tutorials about <a href="http://lsdtopotools.github.io/">LSDTopoTools</a>, that serve both as a basis of a short course as well as practical excercises for a course at <a href="http://www.ed.ac.uk/geosciences">Edinburgh</a> called <a href="http://www.drps.ed.ac.uk/16-17/dpt/cxgegr10094.htm">Eroding Landscapes</a>. Hopefully by following these workshops you will be able perform some simple analyses using LSDTopoTools and will be encouraged to explore its <a href="http://lsdtopotools.github.io/LSDTT_book/">full functionality</a>.</p>
+<p>Welcome to a series of tutorials about <a href="http://lsdtopotools.github.io/">LSDTopoTools</a>, that serve both as a basis of a short course as well as practical excercises for a course at <a href="http://www.ed.ac.uk/geosciences">Edinburgh</a> called <a href="http://www.drps.ed.ac.uk/16-17/dpt/cxgegr10094.htm">Eroding Landscapes</a>. Hopefully by following these tutorials you will be able perform some simple analyses using LSDTopoTools and will be encouraged to explore its <a href="http://lsdtopotools.github.io/LSDTT_book/">full functionality</a>.</p>
 </div>
 </div>
 </div>
@@ -557,7 +557,7 @@ MathJax.Hub.Config({
 </ol>
 </div>
 <div class="paragraph">
-<p>The main difference between these groups is that if you are at Edinburgh you can use our Linux servers and if you are not you will need to set up your own Linux server on your desktop computer or laptop using a clever bit of software called <a href="https://www.vagrantup.com/">Vagrant</a>. Don&#8217;t worry if that sounds a bit complex, we have instructions to walk you through the process, which works on any operating system (e.g., Windows, Linux, or MacOS) and is all based on open-source software.</p>
+<p>The main difference between these groups is that if you are at Edinburgh you can use our Linux servers. If you are working outside Edinburgh&#8217;s network you will need to set up your own Linux server on your desktop computer or laptop using a clever bit of software called <a href="https://www.vagrantup.com/">Vagrant</a>. Don&#8217;t worry if that sounds a bit complex, we have instructions to walk you through the process, which works on any operating system (e.g., Windows, Linux, or MacOS) and is all based on open-source software.</p>
 </div>
 <div class="paragraph">
 <p>The only substantive difference between taught students and research students at Edinburgh is the amount of disk storage you are allocated on our servers. If you are a taught student and are going to be using large datasets you should either install <strong>LSDTopoTools</strong> on your own computer or talk to the GeoSciences IT team about getting more storage.</p>
@@ -746,7 +746,7 @@ If you just plan on using our tools this section describes the best way to set u
 </td>
 <td class="content">
 If <code>wget</code> doesn&#8217;t work, you can follow the link:
-<a href="https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py" class="bare">https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</a>
+<a href="https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py" class="bare">https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</a><br>
 Copy the text, paste it into a text editor and save it as <code>LSDTopoToolsSetup.py</code>.
 </td>
 </tr>
@@ -1427,24 +1427,18 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 <div class="paragraph">
 <p>Sadly, the <code>WAWater.bil</code> raster is produced from data that is not amenable to a good curvature map. It is produced by the Ordinance Survey using a <a href="https://en.wikipedia.org/wiki/Triangulated_irregular_network">TIN</a> and so the landscape is made up of triangular facets that have anomolous curvature values at the intersections and no curvature on the faces.</p>
 </div>
-<div class="paragraph">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
 <p>You will need to run curvature on the <code>WA.bil</code> DEM instead. So make a copy of the driver file:</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ cp Workshop_AD_example.LSDTT_driver Workshop_WA_example.LSDTT_driver</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>+
-. Now you just need to adjust a few parameters:</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
+</li>
+<li>
+<p>Now you just need to adjust a few parameters:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console"># This is a driver file for LSDTopoTools
@@ -1473,21 +1467,19 @@ write slope: true
 write curvature: true</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>+
-. Now run this file:</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
+</li>
+<li>
+<p>Now run this file:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-console" data-lang="console">$ ./LSDTT_analysis_from_paramfile.out /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/ Workshop_WA_example.LSDTT_driver</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>+
-. Once you&#8217;ve done this you should have a DEM called <code>WA_curvature</code></p>
+</li>
+<li>
+<p>Once you&#8217;ve done this you should have a DEM called <code>WA_curvature</code></p>
+</li>
+</ol>
 </div>
 <div class="sect3">
 <h4 id="_run_the_mask">2.4.1. Run the mask</h4>
