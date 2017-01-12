@@ -554,7 +554,7 @@ MathJax.Hub.Config({
 <h2 id="_preface_by_simon_m_mudd">Preface by Simon M Mudd</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Welcome to a series of tutorials about <a href="http://lsdtopotools.github.io/">LSDTopoTools</a>, that serve both as a basis of a short course as well as practical excercises for a course at <a href="http://www.ed.ac.uk/geosciences">Edinburgh</a> called <a href="http://www.drps.ed.ac.uk/16-17/dpt/cxgegr10094.htm">Eroding Landscapes</a>. Hopefully by following these tutorials you will be able perform some simple analyses using LSDTopoTools and will be encouraged to explore its <a href="http://lsdtopotools.github.io/LSDTT_book/">full functionality</a>.</p>
+<p>Welcome to a series of tutorials about <a href="http://lsdtopotools.github.io/">LSDTopoTools</a>, that serve both as a basis of a short course as well as practical exercises for a course at <a href="http://www.ed.ac.uk/geosciences">Edinburgh</a> called <a href="http://www.drps.ed.ac.uk/16-17/dpt/cxgegr10094.htm">Eroding Landscapes</a>. Hopefully by following these tutorials you will be able perform some simple analyses using LSDTopoTools and will be encouraged to explore its <a href="http://lsdtopotools.github.io/LSDTT_book/">full functionality</a>.</p>
 </div>
 </div>
 </div>
@@ -707,7 +707,7 @@ If you are running <code>vagrant up</code> for the first time it can take some t
 <p>If on Windows, you should now be able to use <code>putty.exe</code> to ssh into your LSDTopoTools server. The host name is almost always <code>127.0.0.1</code> and the port is almost always <code>2222</code>.</p>
 </li>
 <li>
-<p>On Windows, you will need to give a username and password after connecting using <code>putty.exe</code>. The machnie is running locally on your computer so nothing is being sent over the internet. The username is always <code>vagrant</code> and the password is also <code>vagrant</code>.</p>
+<p>On Windows, you will need to give a username and password after connecting using <code>putty.exe</code>. The machine is running locally on your computer so nothing is being sent over the internet. The username is always <code>vagrant</code> and the password is also <code>vagrant</code>.</p>
 </li>
 <li>
 <p>If you are on MacOS or Linux you do not need <code>putty.exe</code>; all you need to do is type <code>vagrant ssh</code> into the command line. See the <a href="https://www.vagrantup.com/docs/getting-started/up.html">vagrant instructions</a>.</p>
@@ -1503,7 +1503,7 @@ WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
 <p>For this, we will use the <strong>LSDTopoTools_AnalysisDriver</strong> once again.</p>
 </div>
 <div class="paragraph">
-<p>Sadly, the <code>WAWater.bil</code> raster is produced from data that is not amenable to a good curvature map. It is produced by the Ordinance Survey using a <a href="https://en.wikipedia.org/wiki/Triangulated_irregular_network">TIN</a> and so the landscape is made up of triangular facets that have anomolous curvature values at the intersections and no curvature on the faces.</p>
+<p>Sadly, the <code>WAWater.bil</code> raster is produced from data that is not amenable to a good curvature map. It is produced by the Ordinance Survey using a <a href="https://en.wikipedia.org/wiki/Triangulated_irregular_network">TIN</a> and so the landscape is made up of triangular facets that have anomalous curvature values at the intersections and no curvature on the faces.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1892,7 +1892,7 @@ print_simple_chi_map_to_csv: true</code></pre>
 <div class="sect2">
 <h3 id="_looking_at_the_chi_map_in_qgis">3.3. Looking at the chi map in QGIS</h3>
 <div class="paragraph">
-<p>One we run the analysis, we can have a look at the results in QGIS. The teps will be similar in ArcMap, but we show QGIS here since it is open source.</p>
+<p>One we run the analysis, we can have a look at the results in QGIS. The steps will be similar in ArcMap, but we show QGIS here since it is open source.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1963,7 +1963,7 @@ print_simple_chi_map_to_csv: true</code></pre>
 <div class="content">
 <img src="images/EPSG_4325.jpg" alt="EPSG:4325">
 </div>
-<div class="title">Figure 14. Choose WGS 84 coordintate system with EPSG:4325</div>
+<div class="title">Figure 14. Choose WGS 84 coordinate system with EPSG:4325</div>
 </div>
 </li>
 <li>
@@ -2421,8 +2421,17 @@ Do not set up python in a vagrant server. Instead do it in your host operating s
 </li>
 <li>
 <p>To run spyder you just type <code>spyder</code> at the command line.</p>
-<div class="paragraph">
-<p>Warning: Spyder needs an older version of a package called <strong>PyQt</strong>. If spyder doesn&#8217;t start correctly, run <code>conda install pyqt=4.10 -f</code></p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Spyder needs an older version of a package called <strong>PyQt</strong>. If spyder doesn&#8217;t start correctly, run <code>conda install pyqt=4.10 -f</code>
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
@@ -2470,19 +2479,18 @@ Do not set up python in a vagrant server. Instead do it in your host operating s
 </li>
 <li>
 <p>Getting files from github. In MacOS and linux the prompt will be <code>$</code>, in powershell it will be <code>PS&gt;</code>.</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre>$ git clone https://github.com/LSDtopotools/LSDMappingTools.git
+<pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDMappingTools.git
 $ git clone https://github.com/LSDtopotools/LSDAutomation.git
-$ git clone https://github.com/LSDtopotools/LSDPlotting.git</pre>
+$ git clone https://github.com/LSDtopotools/LSDPlotting.git</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>+
-. You should have all the python files you need now.</p>
+</li>
+<li>
+<p>You should have all the python files you need now.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
