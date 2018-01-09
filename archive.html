@@ -1,0 +1,2506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.0">
+<meta name="author" content="Simon M. Mudd, University of Edinburgh">
+<title>LSDTopoTools workshop</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic|Noto+Serif:400,400italic,700,700italic|Droid+Sans+Mono:400">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove the comments around the @import statement below when using this as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic|Noto+Serif:400,400italic,700,700italic|Droid+Sans+Mono:400";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+#map_canvas img,#map_canvas embed,#map_canvas object,.map_canvas img,.map_canvas embed,.map_canvas object{max-width:none!important}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+.antialiased,body{-webkit-font-smoothing:antialiased}
+img{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{display:inline-block;color:rgba(0,0,0,.8);font-size:.75em;line-height:1.4;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:-.15em .15em 0 .15em;padding:.2em .6em .2em .5em;vertical-align:middle;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.05em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.spread{width:100%}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-check-square-o:first-child,ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{position:relative;top:1px}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1{padding-right:.75em;font-weight:bold}
+td.hdlist1,td.hdlist2{vertical-align:top}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none}
+span.footnote,span.footnoteref{vertical-align:super;font-size:.875em}
+span.footnote a,span.footnoteref a{text-decoration:none}
+span.footnote a:active,span.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em;line-height:1.3;font-size:.875em;margin-left:1.2em;text-indent:-1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+h1,h2{letter-spacing:-.01em}
+dt,th.tableblock,td.content{text-rendering:optimizeLegibility}
+p,td.content{letter-spacing:-.01em}
+p strong,td.content strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after,a[href^="mailto:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img{page-break-inside:avoid}
+thead{display:table-header-group}
+img{max-width:100%!important}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.4.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>LSDTopoTools workshop</h1>
+<div class="details">
+<span id="author" class="author">Simon M. Mudd, University of Edinburgh</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_preface_by_simon_m_mudd">Preface by Simon M Mudd</a></li>
+<li><a href="#_getting_started">1. Getting Started</a>
+<ul class="sectlevel2">
+<li><a href="#_starting_up_at_edinburgh">1.1. Starting up at Edinburgh</a>
+<ul class="sectlevel3">
+<li><a href="#_if_nx_is_not_working">1.1.1. If NX is not working</a></li>
+</ul>
+</li>
+<li><a href="#_move_onto_a_decent_server">1.2. Move onto a decent server</a></li>
+<li><a href="#_starting_up_outside_edinburgh">1.3. Starting up outside Edinburgh</a></li>
+<li><a href="#_starting_up_on_your_own_linux_machine">1.4. Starting up on your own Linux machine</a></li>
+<li><a href="#_starting_up_on_a_non_linux_operating_system_windows_macos">1.5. Starting up on a non-Linux operating system (Windows, MacOS)</a></li>
+<li><a href="#_troubleshooting_a_vagrant_server">1.6. Troubleshooting a vagrant server</a>
+<ul class="sectlevel3">
+<li><a href="#_after_you_have_set_up_a_vagrant_server">1.6.1. After you have set up a vagrant server</a></li>
+</ul>
+</li>
+<li><a href="#_setting_up_directories">1.7. Setting up directories</a>
+<ul class="sectlevel3">
+<li><a href="#_setting_up_directories_the_easy_way">1.7.1. Setting up directories the easy way</a></li>
+<li><a href="#_setting_up_directories_the_hard_way">1.7.2. Setting up directories the hard way</a></li>
+<li><a href="#_directories_the_hard_way_if_you_are_at_edinburgh">1.7.3. Directories the hard way if you are at Edinburgh</a></li>
+<li><a href="#_directories_the_hard_way_if_you_are_outside_edinburgh_or_using_your_home_computer">1.7.4. Directories the hard way if you are outside Edinburgh (or using your home computer)</a></li>
+<li><a href="#_directory_structure">1.7.5. Directory structure</a></li>
+</ul>
+</li>
+<li><a href="#_summary">1.8. Summary</a></li>
+</ul>
+</li>
+<li><a href="#_simple_surface_metrics">2. Simple surface metrics</a>
+<ul class="sectlevel2">
+<li><a href="#_making_the_analysis_driver_program">2.1. Making the analysis driver program</a>
+<ul class="sectlevel3">
+<li><a href="#_if_you_didn_t_use_code_lsdtopotoolssetup_py_code">2.1.1. If you didn&#8217;t use <code>LSDTopoToolsSetup.py</code></a></li>
+</ul>
+</li>
+<li><a href="#_running_your_first_analysis">2.2. Running your first analysis</a>
+<ul class="sectlevel3">
+<li><a href="#_looking_at_the_example_data">2.2.1. Looking at the example data</a></li>
+<li><a href="#_modifying_the_lsdtt_driver_file">2.2.2. Modifying the LSDTT_driver file</a></li>
+<li><a href="#_checking_filenames_using_code_lsdtopotoolssetup_py_code">2.2.3. Checking filenames using <code>LSDTopoToolsSetup.py</code></a></li>
+<li><a href="#_using_your_own_data">2.2.4. Using your own data</a></li>
+<li><a href="#_running_the_analysis">2.2.5. Running the analysis</a></li>
+</ul>
+</li>
+<li><a href="#_looking_at_the_first_analysis_in_qgis">2.3. Looking at the first analysis in QGIS</a></li>
+<li><a href="#_making_a_curvature_mask">2.4. Making a curvature mask</a>
+<ul class="sectlevel3">
+<li><a href="#_run_the_mask">2.4.1. Run the mask</a></li>
+</ul>
+</li>
+<li><a href="#_summary_2">2.5. Summary</a></li>
+</ul>
+</li>
+<li><a href="#_chi_mapping">3. Chi mapping</a>
+<ul class="sectlevel2">
+<li><a href="#_making_the_chi_tools">3.1. Making the chi tools</a>
+<ul class="sectlevel3">
+<li><a href="#_making_chi_tools_using_lsdtopotoolssetup">3.1.1. Making chi tools using LSDTopoToolsSetup</a></li>
+<li><a href="#_making_chi_tools_using_code_make_code">3.1.2. Making chi tools using <code>make</code></a></li>
+</ul>
+</li>
+<li><a href="#_running_a_chi_analysis">3.2. Running a chi analysis</a>
+<ul class="sectlevel3">
+<li><a href="#_looking_at_parameter_file">3.2.1. Looking at parameter file</a></li>
+<li><a href="#_some_extra_chi_mapping_parameters">3.2.2. Some extra chi mapping parameters</a></li>
+<li><a href="#_running_the_analysis_with_the_parameter_file">3.2.3. Running the analysis with the parameter file</a></li>
+</ul>
+</li>
+<li><a href="#_looking_at_the_chi_map_in_qgis">3.3. Looking at the chi map in QGIS</a>
+<ul class="sectlevel3">
+<li><a href="#_adding_csv_data">3.3.1. Adding csv data</a></li>
+</ul>
+</li>
+<li><a href="#_summary_3">3.4. Summary</a></li>
+</ul>
+</li>
+<li><a href="#_using_the_lsdtopotoolssetup_py_script">Appendix A: Using the LSDTopoToolsSetup.py script</a>
+<ul class="sectlevel2">
+<li><a href="#_getting_the_lsdtopotools_setup_script">A.1. Getting the LSDTopoTools setup script</a>
+<ul class="sectlevel3">
+<li><a href="#_alternatives_to_wget">A.1.1. Alternatives to wget</a></li>
+</ul>
+</li>
+<li><a href="#_running_the_lsdtopotools_setup_script">A.2. Running the LSDTopoTools setup script</a>
+<ul class="sectlevel3">
+<li><a href="#_looking_at_all_the_lsdtopotoolssetup_options">A.2.1. Looking at all the LSDTopoToolsSetup options</a></li>
+<li><a href="#_a_default_setup">A.2.2. A default setup</a></li>
+<li><a href="#_other_setup_options">A.2.3. Other setup options</a></li>
+<li><a href="#_if_you_are_running_on_native_linux">A.2.4. If you are running on native Linux</a></li>
+</ul>
+</li>
+<li><a href="#_table_of_lsdtopotoolssetup_py_options">A.3. Table of LSDTopoToolsSetup.py options</a></li>
+</ul>
+</li>
+<li><a href="#_making_directories_for_vagrant">Appendix B: Making directories for Vagrant</a>
+<ul class="sectlevel2">
+<li><a href="#_creating_directories_for_vagrant_in_windows">B.1. Creating directories for Vagrant in Windows.</a></li>
+<li><a href="#_creating_directories_for_vagrant_in_macos">B.2. Creating directories for Vagrant in MacOS.</a></li>
+</ul>
+</li>
+<li><a href="#_plotting_lsdtopotools_output_with_python">Appendix C: Plotting LSDTopoTools output with Python</a>
+<ul class="sectlevel2">
+<li><a href="#_setting_up_python">C.1. Setting up Python</a></li>
+<li><a href="#_lsdtopotools_python_plotting_functions">C.2. LSDTopoTools python plotting functions</a>
+<ul class="sectlevel3">
+<li><a href="#_getting_git">C.2.1. Getting git</a></li>
+<li><a href="#_getting_our_plotting_tools">C.2.2. Getting our plotting tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_preface_by_simon_m_mudd">Preface by Simon M Mudd</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Welcome to a series of tutorials about <a href="http://lsdtopotools.github.io/">LSDTopoTools</a>, that serve both as a basis of a short course as well as practical exercises for a course at <a href="http://www.ed.ac.uk/geosciences">Edinburgh</a> called <a href="http://www.drps.ed.ac.uk/16-17/dpt/cxgegr10094.htm">Eroding Landscapes</a>. Hopefully by following these tutorials you will be able perform some simple analyses using LSDTopoTools and will be encouraged to explore its <a href="http://lsdtopotools.github.io/LSDTT_book/">full functionality</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_started">1. Getting Started</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Welcome to this short course on <a href="http://lsdtopotools.github.io/">LSDTopoTools</a>. There are three collections of people who might be taking this course:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Research students and staff at the University of Edinburgh.</p>
+</li>
+<li>
+<p>Students taking Eroding Landscapes and other taught students (BSc, MSc, MEarthSci) at the University of Edinburgh.</p>
+</li>
+<li>
+<p>People from outside of Edinburgh who want to learn how to use <strong>LSDTopoTools</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The main difference between these groups is that if you are at Edinburgh you can use our Linux servers. If you are working outside Edinburgh&#8217;s network you will either need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>use your own Linux server or computer, in which case you can set up everything with a python script called <a href="#_using_the_lsdtopotoolssetup_py_script">LSDTopoToolsSetup.py</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>set up your own Linux server on your desktop computer or laptop using a clever bit of software called <a href="https://www.vagrantup.com/">Vagrant</a>. Don&#8217;t worry if that sounds a bit complex, we have instructions to walk you through the process, which works on any operating system (e.g., Windows, Linux, or MacOS) and is all based on open-source software.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The only substantive difference between taught students and research students at Edinburgh is the amount of disk storage you are allocated on our servers. If you are a taught student and are going to be using large datasets you should either install <strong>LSDTopoTools</strong> on your own computer or talk to the GeoSciences IT team about getting more storage.</p>
+</div>
+<div class="sect2">
+<h3 id="_starting_up_at_edinburgh">1.1. Starting up at Edinburgh</h3>
+<div class="paragraph">
+<p>If you are at Edinburgh, most of the software you need for <strong>LSDTopoTools</strong> is already installed on our servers. So the main task you will have to get started is getting on to our servers.</p>
+</div>
+<div class="paragraph">
+<p>If you are on a desktop, you will need the program <a href="https://www.nomachine.com/download">NX</a>. Using this program you can log in to our <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a> portal. The instructions are here: <a href="http://www.ed.ac.uk/geosciences/intranet/it/working-remotely" class="bare">http://www.ed.ac.uk/geosciences/intranet/it/working-remotely</a></p>
+</div>
+<div class="paragraph">
+<p>Once you get into NX, you should open <strong>TWO</strong> terminal windows. To open a terminal window in nx just right click and select "terminal".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/NX_open_terminal.jpg" alt="Open a terminal">
+</div>
+<div class="title">Figure 1. Open a terminal window in NX</div>
+</div>
+<div class="sect3">
+<h4 id="_if_nx_is_not_working">1.1.1. If NX is not working</h4>
+<div class="paragraph">
+<p>Sometimes NX misbehaves, so you can also use a secure shell client. Our lab computers have something called either <strong>SSH client</strong> or <strong>SSH Secure Shell</strong>: select the client on the start menu and then begin a new session. You will need to use the address <code>ssh.geos.ed.ac.uk</code>, and then your username, and click on password control. You will then need to enter your EASE password at the prompt. You should start <strong>TWO</strong> sessions. These windows are the equivalent of a terminal window in NX.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_move_onto_a_decent_server">1.2. Move onto a decent server</h3>
+<div class="paragraph">
+<p>When you start up in either NX or an SSH client, you get dumped onto an old, slow server. To switch to a new, faster one, you need to use the <code>ssh</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ssh achray.geos.ed.ac.uk</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You might need to enter your EASE password again here.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_starting_up_outside_edinburgh">1.3. Starting up outside Edinburgh</h3>
+<div class="paragraph">
+<p>If you are not in the School of GeoSciences at the University of Edinburgh, you will need to set up your own Linux environment. Quick instructions are below, but if you like reading installation notes and all the excruciating details, the full instructions can be found at this website:
+<a href="http://lsdtopotools.github.io/LSDTT_book/#_installing_lsdtopotools_using_virtualbox_and_vagrant" class="bare">http://lsdtopotools.github.io/LSDTT_book/#_installing_lsdtopotools_using_virtualbox_and_vagrant</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_starting_up_on_your_own_linux_machine">1.4. Starting up on your own Linux machine</h3>
+<div class="paragraph">
+<p>If you work on a Linux operating system we have a python script for installing everything. You will need to be connected to the internet, and have python installed. You can skip ahead to the section <a href="#_setting_up_directories_the_easy_way">Setting up directories the easy way</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_starting_up_on_a_non_linux_operating_system_windows_macos">1.5. Starting up on a non-Linux operating system (Windows, MacOS)</h3>
+<div class="paragraph">
+<p>Below are quick instructions. If you have trouble, follow the link above and then go through the complete instructions.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Quick Instructions for using Vagrant for LSDTopoTools</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download and install <a href="https://www.virtualbox.org/">virtualbox</a>.</p>
+</li>
+<li>
+<p>Download and install <a href="https://www.vagrantup.com/">vagrant</a>. You might have to restart your computer after this.</p>
+</li>
+<li>
+<p>If you are on Windows, download <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a>. If you are on Linux or MacOS you can skip this (they have built-in equivalents).</p>
+</li>
+<li>
+<p>Make a folder for your vagrant box. We tend to put ours in a directory called <code>VagrantBoxes</code>.</p>
+</li>
+<li>
+<p>Inside that directory make two new directories: <code>LSDTopoTools</code> and <code>Ubuntu_vagrant</code>. The second directory&#8217;s name doesn&#8217;t matter, it is just for holding a vagrant file (see below). However you <strong>MUST</strong> have the <code>LSDTopoTools</code> directory. The directory name is <strong>case sensitive</strong>!</p>
+</li>
+<li>
+<p>Download one of our vagrantfiles: <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles" class="bare">https://github.com/LSDtopotools/LSDTT_vagrantfiles</a> into the <code>Ubuntu_vagrant</code> directory (again, the name of the directory doesn&#8217;t matter).</p>
+</li>
+<li>
+<p>Rename the vagrantfile from the repo (either <code>Vagrantfile_32bit_FFTW</code> or <code>Vagrantfile_64bit_FFTW</code>) simply <code>vagrantfile</code>. Your operating system is almost certainly 64 bit, but on most computers you need to select 32 bit because the default setting is to disable 64 bit guest operating systems. This can be changed but only by expert users.</p>
+</li>
+<li>
+<p>Open a terminal or powershell window and navigate to the directory with the vagrantfile.</p>
+</li>
+<li>
+<p>Run <code>vagrant up</code> from the command line.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you are running <code>vagrant up</code> for the first time it can take some time to download the <a href="https://www.vagrantup.com/docs/getting-started/boxes.html">base box</a>. They are several hundred Mb each!
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Run <code>vagrant provision</code> after the box has started.</p>
+</li>
+<li>
+<p>If on Windows, you should now be able to use <code>putty.exe</code> to ssh into your LSDTopoTools server. The host name is almost always <code>127.0.0.1</code> and the port is almost always <code>2222</code>.</p>
+</li>
+<li>
+<p>On Windows, you will need to give a username and password after connecting using <code>putty.exe</code>. The machine is running locally on your computer so nothing is being sent over the internet. The username is always <code>vagrant</code> and the password is also <code>vagrant</code>.</p>
+</li>
+<li>
+<p>If you are on MacOS or Linux you do not need <code>putty.exe</code>; all you need to do is type <code>vagrant ssh</code> into the command line. See the <a href="https://www.vagrantup.com/docs/getting-started/up.html">vagrant instructions</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_troubleshooting_a_vagrant_server">1.6. Troubleshooting a vagrant server</h3>
+<div class="paragraph">
+<p>There are a few common problems people have when running a vagrant server.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you are on an old computer, sometimes vagrant times out before the virtual machine boots. This most frequently happens the first time you boot a vagrant machine. The most effective way to fix this is with the canonical IT solution: turning it off and on again. TO do that run <code>vagrant halt</code> and <code>vagrant up</code> in succesion.</p>
+</li>
+<li>
+<p>If your files are not synching across your host and vagrant machine, it is probably because there is some misspelling in your <code>LSDTopoTools</code> folder on the host machine. Make sure that folder is in the correct place and is spelled correctly (remember it should be case sensitive!!).</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_after_you_have_set_up_a_vagrant_server">1.6.1. After you have set up a vagrant server</h4>
+<div class="paragraph">
+<p>Once you have a vagrant server set up, you should start <strong>TWO</strong> ssh sessions into the Linux server.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_setting_up_directories">1.7. Setting up directories</h3>
+<div class="paragraph">
+<p><strong>LSDTopoTools</strong> expects your data to be organised in a certain way. You can either do this yourself by hand (we will call this the "hard way") or use a python script we have prepared ("easy way"). If you follow directions to set up the easy way you don&#8217;t need to follow instructions for the hard way.</p>
+</div>
+<div class="sect3">
+<h4 id="_setting_up_directories_the_easy_way">1.7.1. Setting up directories the easy way</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you just plan on using our tools this section describes the best way to set up <strong>LSDTopoTools</strong>. You only need to read the sections about doing things the hard way if you are going to develop our software, or are going to be using new releases of our research code.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Easy setup quick start</div>
+<div class="paragraph">
+<p>If you just want to get started with the standard setup without any details, do the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go into a Linux terminal. If you are on your own computer and it is not Linux, you will need to start a Vagrant session. You will need <a href="https://www.python.org/">python</a> but this is now standard on most Linux distributions so we will assume you have it.</p>
+</li>
+<li>
+<p>Get the python setup tool:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ wget https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the setup tool:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 0</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You are ready to go!!</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>For native Linux users</strong>: The <code>-id</code> flag tells LSDTopoToolsSetup.py where to put the files. In vagrant it always starts in the root directory (this is for file syncing purposes). However, if your native operating system is Linux, then you can either install in your home directory (<code>-id 0</code>) or in the directory where you called LSDTopoToolsSetup.py (<code>-id 1</code>).
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The first thing you need to do is get our python program <strong>LSDTopoToolsSetUp.py</strong>. It lives here: <a href="https://github.com/LSDtopotools/LSDAutomation/blob/master/LSDTopoToolsSetup.py" class="bare">https://github.com/LSDtopotools/LSDAutomation/blob/master/LSDTopoToolsSetup.py</a></p>
+<div class="paragraph">
+<p>You will need to run this file in your Linux environment, so in a terminal window type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ wget https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If <code>wget</code> doesn&#8217;t work, you can follow the link:
+<a href="https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py" class="bare">https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</a><br>
+Copy the text, paste it into a text editor and save it as <code>LSDTopoToolsSetup.py</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Now, in your terminal window run this script. It has some options:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For the most basic setup, type:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In our Vagrant setup, this will install everything in the root directory (you can got there with <code>$ cd /</code>),  which is the default setup generated by our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">Vagrantfile</a>. If you are not in vagrant the <strong>LSDTopoTools</strong> directories will be in your home directory (you can get there with <code>$ cd ~</code>).</p>
+</div>
+</li>
+<li>
+<p>If you don&#8217;t want <strong>LSDTopoTools</strong> in your home directory, you can install it in your current directory with:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 1</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>It turns out the <code>LSDTopoToolsSetup.py</code> tool has a number of options but we will explain these later. If you want a preview of what it does, you can call its help options:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -h</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_setting_up_directories_the_hard_way">1.7.2. Setting up directories the hard way</h4>
+<div class="paragraph">
+<p>Our script <code>LSDTopoToolsSetup.py</code> automates creation of the correct directories and installing the LSDTopoTools programs. If you have used that script you don&#8217;t really need to read this, but if you are unfamiliar with Linux at some point you will need to come to terms with the way our directories are structured, how to move between directories, finding things in directories, etc., so you might consider reading this section when you have the chance.</p>
+</div>
+<div class="paragraph">
+<p>Understanding where your files are is <strong>ESSENTIAL</strong>. If you don&#8217;t know where your files are it will lead to extreme frustration! You will need to work with files and directories in Linux. There is an <a href="http://lsdtopotools.github.io/LSDTT_book/#_setting_up_your_file_system_and_keeping_it_clean_strong_essential_reading_if_you_are_new_to_linux_strong">entire section in our book</a> about this.</p>
+</div>
+<div class="paragraph">
+<p>The crucial thing is that we will have separate directories for <strong>DATA</strong> and <strong>PROGRAMS</strong>. So you will need to make directories for these.</p>
+</div>
+<div class="paragraph">
+<p>For the purposes of this workshop, we will use a standardised directory structure. If you <strong>NOT</strong> at Edinburgh and using our vagrant setup, then this structure already exists!! If you are at Edinburgh you will need to make this structure. This is automated by the script <code>LSDTopoToolsSetup.py</code> but these instructions are here in case you want to do it by hand.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In Linux, to find out your current directory type the command <code>pwd</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">How directories are organised and how to move around in them</div>
+<div class="paragraph">
+<p>Inside your computer are files organised into directories (in Windows these are called folders, but the concept is the same). These can be nested, so a directory can contain other directories.</p>
+</div>
+<div class="paragraph">
+<p>One way of thinking about this is like the root system of a tree. Directories inside other directories are like branching roots. If you start at the tip of the system and keep going up you get to the biggest root. In Linux the top directory is called <strong>root</strong>: it contains all the other directories. So when we say you are going "down" is means you are getting into smaller and smaller directories, and if you are going "up" it means you are getting closer to the root, where there are directories that connect to more stuff (i.e., they connect to more "branches".)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To go "up" you type the command <code>cd ..</code> The <code>cd</code> stands for "change directory".</p>
+</li>
+<li>
+<p>To go "down" you need to choose one of the branches: <code>cd A_directory_name</code> where <code>A_directory_name</code> can be the name of any directory within your current directory.</p>
+</li>
+<li>
+<p>To see what is in a directory use <code>ls</code>. If you want lots of details type <code>ls -l</code>.</p>
+</li>
+<li>
+<p>To see what directory you are in type <code>pwd</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_directories_the_hard_way_if_you_are_at_edinburgh">1.7.3. Directories the hard way if you are at Edinburgh</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you have just started an ssh or terminal window, you can find out where you are, it will look something like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
+$ /home/MyUserName/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case <code>MyUserName</code> will be replaced by your own EASE name (e.g., smudd)</p>
+</div>
+</li>
+<li>
+<p>Make a directory called <code>LSDTopoTools</code> using the <code>mkdir</code> command and then go into it with the <code>cd</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ mkdir LSDTopoTools
+$ cd LSDTopoTools
+$ pwd
+$ /home/MyUserName/LSDTopoTools/</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Linux is case sensitive so <code>LSDTopoTools</code> and <code>lsdtopotools</code> and <code>LSDtopotools</code> are three different directories!! Make sure you keep track of this!
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<strong>DO NOT</strong> use spaces in your file or directory names, <strong>EVER.</strong>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Now make two new directories in the <code>LSDTopoTools</code> directory, called <code>Git_projects</code> and <code>Topographic_projects</code>. The only reason for these names is that the rest of the documentation uses these directory names.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
+$ /home/MyUserName/LSDTopoTools/
+$ mkdir Git_projects
+$ mkdir Topographic_projects</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>We are going to clone some data into the <code>Topographic_projects</code> directory. Even if you are going to use your own DEM this is handy because the cloned data folder also includes all the parameter files that we will use in this workshop:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd Topographic_projects
+$ git clone https://github.com/LSDtopotools/LSDTT_workshop_data.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>This will make a folder <code>LSDTT_workshop_data</code> into which you can place your own data. It also contains two test DEMs from Scotland that we will use in the Eroding Landscapes course.</p>
+</li>
+<li>
+<p>Now go back into your <code>Git_projects</code> directory. If you have followed the above directions you will be sitting in the <code>Topographic_projects</code> directory so go up a level and then down into the <code>Git_projects</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd ..
+$ cd Git_projects</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now you need to clone some other repositories that have our code:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver.git
+$ git clone https://github.com/LSDtopotools/LSDTopoTools_CRNBasinwide.git
+$ git clone https://github.com/LSDtopotools/LSDTopoTools_ChannelExtraction.git
+$ git clone https://github.com/LSDtopotools/LSDTopoTools_ChiMudd2014.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Great! Now you have everything you need for the workshop.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_directories_the_hard_way_if_you_are_outside_edinburgh_or_using_your_home_computer">1.7.4. Directories the hard way if you are outside Edinburgh (or using your home computer)</h4>
+<div class="paragraph">
+<p>If you have set up using our <a href="https://github.com/LSDtopotools/LSDTT_vagrantfiles">vagrantfiles</a>, the correct directory structure is already in place. However you will need to clone the data for this workshop:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /LSDTopoTools/Topographic_projects
+$ git clone https://github.com/LSDtopotools/LSDTT_workshop_data.git</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_directory_structure">1.7.5. Directory structure</h4>
+<div class="paragraph">
+<p>If you did this the easy way, you will have directories that look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">/LSDTopoTools
+  |--Git_projects
+  |----LSDTopoTools_AnalysisDriver
+  |----LSDTopoTools_ChiMudd2014
+  |--Topographic_projects
+  |----LSDTT_workshop_data
+  |----Test_data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you are in vagrant, the <code>/LSDTopoTools</code> directory will be in the root directory, whereas if you are in another system it will be in your home directory (which you can get to with <code>cd ~</code>), unless you told the setup tool to install in your current directory.</p>
+</div>
+<div class="paragraph">
+<p>If you setup the hard way, you will have a few extra things (which the setup tool gets with some optional instructions):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">/LSDTopoTools
+  |--Git_projects
+  |----LSDTopoTools_AnalysisDriver
+  |----LSDTopoTools_CRNBasinwide
+  |----LSDTopoTools_ChannelExtraction
+  |----LSDTopoTools_ChiMudd2014
+  |--Topographic_projects
+  |----LSDTT_workshop_data
+  |----Test_data</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary">1.8. Summary</h3>
+<div class="paragraph">
+<p>At the end of this section you will have the directories and files you need to move on to the next stage of the workshop.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_simple_surface_metrics">2. Simple surface metrics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section we will use the <a href="https://github.com/LSDtopotools/LSDTopoTools_AnalysisDriver">LSDTopoTools analysis driver</a> program to calculate some new rasters. The analysis driver is good for doing simple calculations and routine analyses.</p>
+</div>
+<div class="sect2">
+<h3 id="_making_the_analysis_driver_program">2.1. Making the analysis driver program</h3>
+<div class="paragraph">
+<p>LSDTopoTools is distributed as source code in C++, so you have to turn it into a program using a <a href="https://en.wikipedia.org/wiki/Compiler">compiler</a> and a program called <code>make</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you used <code>LSDTopoToolsSetup.py</code>, all of that <code>make</code> stuff will have just happened automatically. You can skip past this section!</p>
+</div>
+<div class="sect3">
+<h4 id="_if_you_didn_t_use_code_lsdtopotoolssetup_py_code">2.1.1. If you didn&#8217;t use <code>LSDTopoToolsSetup.py</code></h4>
+<div class="paragraph">
+<p>If you didn&#8217;t use <code>LSDTopoToolsSetup.py</code>, you need to use <code>make</code> yourself. If you have some familiarity with Linux then this should be rather painless.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is easier to keep track of things if you have one terminal window for the directories with the source code (these are all in the <code>Git_projects</code> directory) and another terminal window inside directories where you keep your data (these are in the <code>Topographic_projects</code> directory).
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate into the <code>LSDTopoTools_AnalyisDriver</code> directory, and then into the subdirectory <code>Analysis_driver</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /path/to/LSDTopoTools/
+$ cd Git_projects/LSDTopoTools_AnalysisDriver/Analysis_driver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>/path/to/</code> bit can be replaced by your own path (in my case it is <code>/home/smudd/</code>). In vagrant this is simply <code>/</code> since our vagrant setup puts the <code>LSDTopoTools</code> directory within the root directory.</p>
+</div>
+</li>
+<li>
+<p>Then use <code>make</code> to compile the programs. You will get lots of warnings that can be ignored.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f Drive_analysis_from_paramfile.make</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once you have done this, you should see a file called <code>LSDTT_analysis_from_paramfile.out</code> in this directory. That is the program we will use to make some new topographic data!</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_your_first_analysis">2.2. Running your first analysis</h3>
+<div class="paragraph">
+<p>It is now time to do some number crunching of your DEM using <strong>LSDTopoTools</strong>. In this part we will get slope, curvature and hillshade rasters.</p>
+</div>
+<div class="sect3">
+<h4 id="_looking_at_the_example_data">2.2.1. Looking at the example data</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>At this stage you should have a terminal window or secure shell window open in the <code>Analysis_driver</code> directory.</p>
+</li>
+<li>
+<p>Use the <strong>SECOND</strong> terminal window to go to the data folder (if you&#8217;ve not got another window, or secure shell, open one now).</p>
+</li>
+<li>
+<p>Use this second window to go to the <code>LSDTT_workshop_data</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /path/to/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>We have provided an example parameter file in this directory. You can see all the stuff in the <code>LSDTT_workshop_data</code> directory by using the <code>ls</code> command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ls
+README.asc  WAWater.bil                       Workshop_ChiTool.driver
+WA.bil      WAWater.hdr
+WA.hdr      Workshop_AD_example.LSDTT_driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The file you want is <code>Workshop_AD_example.LSDTT_driver</code>. If you are using our Vagrant setup then this doesn&#8217;t need to be edited. But if you are running on an Edinburgh server or are using your own data, this file will need to be modified.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_modifying_the_lsdtt_driver_file">2.2.2. Modifying the LSDTT_driver file</h4>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Editing text files</div>
+<div class="paragraph">
+<p>We have parameter files (sometimes called <code>driver</code> files) that tell LSDTopoTools what data to look for, what analyses to do, etc. You will need to modify these files. You need a <strong>text editor</strong> to do this. You <strong>CANNOT</strong> use a word processor (like Word or Wordpad) since it inserts a load of formatting. You just need something that changes plain text without any fuss.</p>
+</div>
+<div class="paragraph">
+<p>You can edit text in Linux using <a href="https://www.gnu.org/software/emacs/">emacs</a> or <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">vim</a>, but these are not great for people uncomfortable in Linux.</p>
+</div>
+<div class="paragraph">
+<p>However, you don&#8217;t need to be in Linux to edit these files!</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>At Edinburgh, you can map your network drives so you can see files on our Linux servers and in your Windows or MacOS desktop. So edit your files there.</p>
+</li>
+<li>
+<p>Outside Edinburgh, you should be using our Vagrant setup, and in that case files are synced between your Linux server and your native operating system so you can use a local text editor.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>So what text editor to use?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you have administrator permission on your computer, I recommend <a href="http://brackets.io/">brackets</a> for text editing. It works on Windows, MacOS and Linux.</p>
+</li>
+<li>
+<p>If you are in an Edinburgh computer lab, you should have <a href="http://www.pspad.com/en/">PSPad</a> installed so you can use that.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Hopefully you know what a text editor is (if not read the box above!). Open <code>Workshop_AD_example.LSDTT_driver</code> in a text editor. It looks like this</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># This is a driver file for LSDTopoTools
+# Any lines with the # symbol in the first row will be ignored
+
+# File information
+# IMPORTANT: you will need to modify the file path to reflect your directory structure
+# NOTE: If you want to use a smaller test DEM use WA instead of WAWater
+dem read extension: bil
+dem write extension: bil
+read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WAWater
+write fname: WAWater
+
+# Parameters for various topographic analysis
+min_slope_for_fill: 0.0001
+
+# Parameters for polyfit and slope calculations
+polyfit_window_radius: 19
+slope_method: polyfit
+
+# The different analyses to be run
+write hillshade: true
+write slope: true
+write curvature: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Whoa! What is all this stuff? There are instructions to our program telling the computer what to do. Most of this you can ignore (for now), but for us the important lines are:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WAWater
+write fname: WAWater</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The two lines with <code>path</code> tell the program where to read and write the data.</p>
+</li>
+<li>
+<p>The <code>read fname</code> is the name of the file on which you will perform analysis.  The <code>read fname</code> is the <strong>PREFIX</strong> of the DEM you will use. So if your DEM is called <code>WA.bil</code> then <code>read fname:</code> will be  <code>WA</code>.</p>
+</li>
+<li>
+<p>To see where your data is, type <code>pwd</code> in the <code>LSDTT_workshop_data</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ pwd
+homes/smudd/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>YOUR directory will be different!</strong> Copy your directory into the file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: /my/directory/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /my/directory/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you are using vagrant the directories will work without any modification.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>You can also change the name of the data file. It can be your own data, or it can be the much smaller DEM <code>WA.bil</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_checking_filenames_using_code_lsdtopotoolssetup_py_code">2.2.3. Checking filenames using <code>LSDTopoToolsSetup.py</code></h4>
+<div class="paragraph">
+<p>The python script <code>LSDTopoToolsSetup.py</code>, which you can read about <a href="#_setting_up_directories_the_easy_way">here</a>, allows you to check the directories of your files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 0 -cp True</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you called this script with <code>-id 1</code> the first time you will need to do that again. Calling it with <code>-cp True</code> will go through all of the directories in the <code>\LSDTopoTools\TopoTgraphic_projects</code> folder modifying any files with extension <code>.driver</code> or <code>.LSDTT_driver</code>, updating the <code>read path:</code> and <code>write_path</code> entries with the correct path names.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_using_your_own_data">2.2.4. Using your own data</h4>
+<div class="paragraph">
+<p>If you use your own data you need to make sure it is in the correct format. You can read all about that <a href="http://lsdtopotools.github.io/LSDTT_book/#_preparing_your_data">in our main documentation</a>. But the main points are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Data <strong>MUST</strong> be in a projected coordinate system. We prefer UTM. To convert to UTM from anything else <a href="http://lsdtopotools.github.io/LSDTT_book/#_gdal_2">use GDAL</a>.</p>
+</li>
+<li>
+<p>Data <strong>MUST</strong> be in one of 3 formats, but I am only going to tell you about one since it is by far the best: <a href="http://www.harrisgeospatial.com/docs/ENVIImageFiles.html">ENVI bil</a>. <strong>THIS IS NOT THE SAME AS ESRI BIL!!!</strong>. To convert from other formats to <strong>ENVI bil</strong> <a href="http://lsdtopotools.github.io/LSDTT_book/#_gdal_2">use GDAL</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_the_analysis">2.2.5. Running the analysis</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Okay, at this point you should have modified the <code>Workshop_AD_example.LSDTT_driver</code> file so that it reflects the directory of your data and the name of your data. Don&#8217;t touch anything else.</p>
+</li>
+<li>
+<p>Go back to the terminal window where you ran the <code>make</code> command (remember, use two terminal or SSH windows: it makes things easer).</p>
+</li>
+<li>
+<p>In that window make sure you have the program: type</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ls LSDTT_analysis_from_paramfile.out</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If it says <code>no such file or directory</code> it means you are either in the wrong directory or have not compiled the program. If that is the case use <code>pwd</code> to figure out where you are and try to get back to the folder with the <code>.out</code> file.</p>
+</div>
+</li>
+<li>
+<p>If you have that file, type</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./LSDTT_analysis_from_paramfile.out /my/directory/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/ Workshop_AD_example.LSDTT_driver</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You will need to update the path to reflect where your data is. The easiest way to do this is to type <code>pwd</code> in the terminal window with your data and copy it into the window with the program.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>When you run this command, the program will work for a little while and then spit out several rasters that will sit in your data folder. The raster that it prints are determined by these lines in the <code>LSDTT_driver</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># The different analyses to be run
+write hillshade: true
+write slope: true
+write curvature: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So hopefully it is obvious that you will get slope, curvature and hillshade rasters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ls
+README.asc   Workshop_AD_example_curvature.bil  Workshop_AD_example_slope.bil
+WA.bil       Workshop_AD_example_curvature.hdr  Workshop_AD_example_slope.hdr
+WA.hdr       Workshop_AD_example_hs.bil         Workshop_ChiTool.driver
+WAWater.bil  Workshop_AD_example_hs.hdr
+WAWater.hdr  Workshop_AD_example.LSDTT_driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The rasters have filenames that reflect what they are (<code>HS</code>, for example, denotes a hillshade raster). Okay, we can now move on to looking at the data!</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_looking_at_the_first_analysis_in_qgis">2.3. Looking at the first analysis in QGIS</h3>
+<div class="paragraph">
+<p>We are going to look at some of the resulting rasters in QGIS. The main reason for using QGIS and not ArcMap is that QGIS is open source and you can download it onto your home computer. ArcMap needs an expensive license. However, if you want to use ArcMap the steps are similar (the buttons are just in slightly different places).</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In QGIS the add data button looks like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_add_data.jpg" alt="Add data">
+</div>
+<div class="title">Figure 2. Open raster data in QGIS</div>
+</div>
+</li>
+<li>
+<p>Find the DEM (in the example <code>WAWater.bil</code>) and add it.</p>
+</li>
+<li>
+<p>Once you add data you will see it in the layers toolbar:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_layers.jpg" alt="QGIS layers">
+</div>
+<div class="title">Figure 3. QGIS layers</div>
+</div>
+<div class="paragraph">
+<p>You should see something like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Whiteadder_Water_DEM.jpg" alt="Whiteadder_Water">
+</div>
+<div class="title">Figure 4. DEM of the Whiteadder Water, Scotland</div>
+</div>
+</li>
+<li>
+<p>If you want to change the colours right click on the layers and select <code>properties</code>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_properties.jpg" alt="Raster properties">
+</div>
+<div class="title">Figure 5. Selecting the properties of a raster</div>
+</div>
+</li>
+<li>
+<p>Then go into the <code>Style</code> menu and select <code>Singleband pseudocolor</code></p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_singleband_pseudocolor.jpg" alt="Select pseudo colour">
+</div>
+<div class="title">Figure 6. Selecting the display of colours</div>
+</div>
+</li>
+<li>
+<p>If you go to the "new color map" pull down you can select from a range of colormaps, and download yet even more by selecting "new color ramp" at the bottom. For topography the wiki-schwartzwald` gradient is nice. You can choose whichever one you want.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_new_colour_ramp.jpg" alt="New colour ramp">
+</div>
+<div class="title">Figure 7. Selecting a colour ramp (including loading new ones)</div>
+</div>
+</li>
+<li>
+<p>To get this to work you then need to click on the <strong>classify</strong> button. Then click <strong>apply</strong>. You will get something like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_coloured_DEM.jpg" alt="New coloured DEM">
+</div>
+<div class="title">Figure 8. Whiteadder Water DEM in colour</div>
+</div>
+</li>
+<li>
+<p>Following a similar procedure you can load the hillshade, slope and curvature maps, for example:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Whiteadder_Water_hillshade.jpg" alt="Hillshade">
+</div>
+<div class="title">Figure 9. Whiteadder Water hillshade</div>
+</div>
+</li>
+<li>
+<p>If you want to make layers transparent, right click on the raster layer, select <strong>properties</strong>, and select the <strong>transparency</strong> tab.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_making_a_curvature_mask">2.4. Making a curvature mask</h3>
+<div class="paragraph">
+<p>In this next step we will use the curvature data to make a masked plot. Curvature is a metric that tells us about where there are fluvial vs hillslope processes happening in a landscape, and has been used to <a href="http://onlinelibrary.wiley.com/doi/10.1029/2011JF002057/abstract">infer erosion rates</a>.</p>
+</div>
+<div class="paragraph">
+<p>For this, we will use the <strong>LSDTopoTools_AnalysisDriver</strong> once again.</p>
+</div>
+<div class="paragraph">
+<p>Sadly, the <code>WAWater.bil</code> raster is produced from data that is not amenable to a good curvature map. It is produced by the Ordinance Survey using a <a href="https://en.wikipedia.org/wiki/Triangulated_irregular_network">TIN</a> and so the landscape is made up of triangular facets that have anomalous curvature values at the intersections and no curvature on the faces.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You will need to run curvature on the <code>WA.bil</code> DEM instead. So make a copy of the driver file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cp Workshop_AD_example.LSDTT_driver Workshop_WA_example.LSDTT_driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now you just need to adjust a few parameters:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console"># This is a driver file for LSDTopoTools
+# Any lines with the # symbol in the first row will be ignored
+
+# File information
+# IMPORTANT: you will need to modify the file path to reflect your directory structure
+# NOTE: If you want to use a smaller test DEM use WA instead of WAWater
+dem read extension: bil
+dem write extension: bil
+read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WA
+write fname: WA
+
+# Parameters for various topographic analysis
+min_slope_for_fill: 0.0001
+
+# Parameters for polyfit and slope calculations
+polyfit_window_radius: 19
+slope_method: polyfit
+
+# The different analyses to be run
+write hillshade: true
+write slope: true
+write curvature: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now run this file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./LSDTT_analysis_from_paramfile.out /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/ Workshop_WA_example.LSDTT_driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once you&#8217;ve done this you should have a DEM called <code>WA_curvature</code></p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_run_the_mask">2.4.1. Run the mask</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>First, go into your data directory and make a another copy of the driver file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cp Workshop_AD_example.LSDTT_driver Mask_example.LSDTT_driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now you just need to adjust a few parameters:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console"># This is a driver file for LSDTopoTools
+# Any lines with the # symbol in the first row will be ignored
+
+# File information
+# IMPORTANT: you will need to modify the file path to reflect your directory structure
+# NOTE: If you want to use a smaller test DEM use WA instead of WAWater
+dem read extension: bil
+dem write extension: bil
+read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WA_curvature
+write fname: WA_curvature
+
+# Parameters for masking
+mask_threshold: 0
+mask_nodataisbelowthreshold: 0
+
+# The different analyses to be run
+write mask threshold: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The differences here are that you are using the <code>WA_curvature</code> raster instead of the DEM, that you are trying to write a mask threshold, and you are going to turn anything that is over the threshold value of 0 into a <code>nodata</code> (that is, you tell the computer it doesn&#8217;t have any data there).</p>
+</li>
+<li>
+<p>You can change this around a bit: if you run <code>mask_nodataisbelowthreshold: 1</code> it means anything below the threshold is masked, and you can change the threshold value by changing <code>mask_threshold:</code>.</p>
+</li>
+<li>
+<p>Once you have done this try loading into QGIS and looking at this data over the hillshade using transparency (in the <strong>properties</strong> menu: right-click on the layer).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary_2">2.5. Summary</h3>
+<div class="paragraph">
+<p>By the end of this chapter you should have created slope, curvature and hillshade rasters, and you should also have created a masked curvature raster.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_chi_mapping">3. Chi mapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section we will use the <a href="https://github.com/LSDtopotools/LSDTopoTools_ChiMudd2014">LSDTopoTools chi tool</a> program to calculate a map of chi (a Greek letter pronounced "kai") and chi slope. Chi slope is an indicator of how steep the channel is normalised for drainage area, and the chi coordinate by itself can be used to infer drainage capture and divide migration.</p>
+</div>
+<div class="sect2">
+<h3 id="_making_the_chi_tools">3.1. Making the chi tools</h3>
+<div class="paragraph">
+<p>If you have jumped directly here, LSDTopoTools is distributed as source code in C++, so you have to turn it into a program using a <a href="https://en.wikipedia.org/wiki/Compiler">compiler</a> and a program called <code>make</code>. There is an easy way to do this, using a python script called <a href="https://github.com/LSDtopotools/LSDAutomation/blob/master/LSDTopoToolsSetup.py">LSDTopoToolsSetup.py</a>, or you can do it one step at a time using <code>make</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_making_chi_tools_using_lsdtopotoolssetup">3.1.1. Making chi tools using LSDTopoToolsSetup</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you followed the directions on <a href="#_setting_up_directories_the_easy_way">setting up directories the easy way</a>, you will already have the chi tools set up!</p>
+</li>
+<li>
+<p>If you haven&#8217;t already set things up with this file, download it and run <strong>EITHER</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>OR</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -id 1</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Doing this will set up <strong>LSDTopoTools</strong> in the root directory (in Vagrant). If you are not in vagrant, running it with <code>-id 0</code> it put LSDTopoTools in your root directory (in any other Linux system), whereas <code>-id 1</code> will put it in the directory from which you called <code>LSDTopoToolsSetup.py</code>. In vagrant, to get to the root just type:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To get to your home directory just type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd ~</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_making_chi_tools_using_code_make_code">3.1.2. Making chi tools using <code>make</code></h4>
+<div class="paragraph">
+<p>The python script <code>LSDTopoToolsSetup.py</code> automates compilation of our source code, but in some cases you might want to compile things on your own (particularly if you start making changes to the source code).</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate into the <code>LSDTopoTools_ChiMudd2014</code> directory, and then into the subdirectory <code>driver_functions_MuddChi2014</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd /path/to/LSDTopoTools/
+$ cd Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>/path/to/</code> bit can be replaced by your own path (in my case it is <code>/home/smudd/</code>). In vagrant this is simply <code>/</code> since our vagrant setup puts the <code>LSDTopoTools</code> directory within the root directory.</p>
+</div>
+</li>
+<li>
+<p>Then use <code>make</code> to compile the programs. You will get lots of warnings that can be ignored.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ make -f chi_mapping_tool.make</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once you have done this, you should see a file called <code>LSDTT_analysis_from_paramfile.out</code> in this directory. That is the program we will use to make some new topographic data!</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_a_chi_analysis">3.2. Running a chi analysis</h3>
+<div class="paragraph">
+<p>Like the <strong>Analysis Driver</strong> from the previous chapter, the <strong>chi tool</strong> is run using a parameter file. We tend to put the parameter file in the same directory as the data. We find that it is much simpler to work with one terminal window open in the directory with the source code (<code>/path/to/LSDTopoTools/Git_projects/LSDTopoTools_ChiMudd2014/driver_functions_MuddChi2014/</code>) and another terminal window open in the directory with the data (<code>/path/to/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/</code>).</p>
+</div>
+<div class="sect3">
+<h4 id="_looking_at_parameter_file">3.2.1. Looking at parameter file</h4>
+<div class="paragraph">
+<p>The parameter file for the <strong>chi tool</strong> is called <code>Workshop_ChiTool.driver</code>. It is set up to run on the small <strong>WA.bil</strong> raster. If you want to run on the larger <strong>WAWater.bil</strong> raster you just need to change the filename in the parameter file.</p>
+</div>
+<div class="paragraph">
+<p>The parameter file looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># Parameters for performing chi analysis
+# Comments are preceeded by the hash symbol
+# Documentation can be found here:
+# http://lsdtopotools.github.io/LSDTT_book/#_chi_analysis_part_3_getting_chi_gradients_for_the_entire_landscape
+
+# These are parameters for the file i/o
+# IMPORTANT: You MUST make the write directory: the code will not work if it doens't exist.
+read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WAWater
+channel heads fname: NULL
+
+# Parameter for filling the DEM
+min_slope_for_fill: 0.0001
+
+# Parameters for selecting channels and basins
+
+threshold_contributing_pixels: 2000
+minimum_basin_size_pixels: 500
+test_drainage_boundaries: false
+
+# Parameters for chi analysis
+A_0: 1
+m_over_n: 0.45
+threshold_pixels_for_chi: 2000
+
+n_iterations: 10
+target_nodes: 80
+minimum_segment_length: 10
+sigma: 10.0
+skip: 2
+
+# The data that you want printed to file
+only_check_parameters: false
+print_stream_order_raster: true
+print_DrainageArea_raster: true
+print_segmented_M_chi_map_to_csv: true
+print_simple_chi_map_to_csv: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There is a whole bunch of stuff in here, which you should mostly ignore. Here are the relevant lines:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The lines that control the location of the files to read and write are here:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">read path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+write path: /LSDTopoTools/Topographic_projects/LSDTT_workshop_data/
+read fname: WA</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You need to update these lines with your own directory structures. The <code>read name:</code> gives the prefix of the DEM. If you want the bigger dem, replace <code>WA</code> with <code>WAWater</code>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Updating your parameter files the easy way</div>
+<div class="paragraph">
+<p>You can update the read and write paths to reflect your own directory structure by running <strong>EITHER</strong></p>
+</div>
+<div class="paragraph">
+<p><code>python LSDTopoToolsSetup.py -id 0 -cp True</code></p>
+</div>
+<div class="paragraph">
+<p><strong>OR</strong></p>
+</div>
+<div class="paragraph">
+<p><code>python LSDTopoToolsSetup.py -id 1 -cp True</code></p>
+</div>
+<div class="paragraph">
+<p>You should use the same <code>-id</code> flag you used when you first set up <strong>LSDTopoTools</strong>.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>These lines control how dense the channel network will be when you run the code:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">threshold_contributing_pixels: 2000
+minimum_basin_size_pixels: 500
+test_drainage_boundaries: false
+
+# Parameters for chi analysis
+A_0: 1
+m_over_n: 0.45
+threshold_pixels_for_chi: 2000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>threshold_pixels_for_chi</code> parameter should not be larger than the <code>threshold_contributing_pixels</code> parameter. If these parameters are small you will get many channels, if they are large you will get fewer channels. <code>minimum_basin_size_pixels</code> should not be larger than <code>threshold_contributing_pixels</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you keep <code>A_0</code> equal to 1, then the chi slope will be the same as the channel steepness index, <code>k_sn</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile"># The data that you want printed to file
+only_check_parameters: false
+print_stream_order_raster: true
+print_DrainageArea_raster: true
+print_segmented_M_chi_map_to_csv: true
+print_simple_chi_map_to_csv: true</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The <code>only_check_parameters</code> is for bug testing: if true it will make sure your parameters will not immediately lead to a crash.</p>
+</li>
+<li>
+<p>The <code>print_stream_order_raster</code> will print a raster showing where the stream network is.</p>
+</li>
+<li>
+<p>The <code>print_DrainageArea_raster</code> will print a raster showing the drainage area.</p>
+</li>
+<li>
+<p>The two <code>csv</code> parameters are to print files that can both be read by either a GIS or by excel. The <code>segmented</code> is more complete, it has all the information of the <code>simple_chi_map</code> and more; the <code>simple_chi_map</code> only has the chi coordinate and location of the channels.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_some_extra_chi_mapping_parameters">3.2.2. Some extra chi mapping parameters</h4>
+<div class="paragraph">
+<p>The default of the chi mapping program is to only extract the chi values and slopes from the biggest basin. You can get the chi slopes and values for all basins by adding the following line to the parameter file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">only_take_largest_basin: false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can print the chi values to a raster (rather than csv) with the line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-paramfile" data-lang="paramfile">print_chi_coordinate_raster: true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_the_analysis_with_the_parameter_file">3.2.3. Running the analysis with the parameter file</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you&#8217;ve done the analysis driver exercise, this should be familiar.</p>
+</li>
+<li>
+<p>Go into the directory where you compiled the <strong>chi tool</strong> and run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ ./chi_mapping_tool.exe /path/to/LSDTopoTools/Topographic_projects/LSDTT_workshop_data/ Workshop_ChiTool.driver</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The program should spit out a bunch of text, and afterwards you will be left with some new files, which we will look at in QGIS in the next section.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_looking_at_the_chi_map_in_qgis">3.3. Looking at the chi map in QGIS</h3>
+<div class="paragraph">
+<p>One we run the analysis, we can have a look at the results in QGIS. The steps will be similar in ArcMap, but we show QGIS here since it is open source.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In QGIS the add data button looks like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/QGIS_add_data.jpg" alt="Add data">
+</div>
+<div class="title">Figure 10. Open raster data in QGIS</div>
+</div>
+</li>
+<li>
+<p>Find the data rasters and add them:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>WA_DArea.bil</code></p>
+</li>
+<li>
+<p><code>WA_SO.bil</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To change the styling of these, see the section <a href="#_looking_at_the_first_analysis_in_qgis">Looking at the first analysis in QGIS</a>.</p>
+</li>
+<li>
+<p>Here is a coloured version of the stream order raster:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/WA_stream_order.jpg" alt="stream order">
+</div>
+<div class="title">Figure 11. Stream orders over the elevation raster of the Killmade Burn, Scotland</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_adding_csv_data">3.3.1. Adding csv data</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It is a bit more difficult to add csv data (csv stands for comma separated values). In QGIS, you need to click on the layer menu and then scroll to the <code>add text delimeted layer</code> button:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Add_csv_layer.jpg" alt="Add csv">
+</div>
+<div class="title">Figure 12. Add csv data</div>
+</div>
+</li>
+<li>
+<p>We will add the <code>WA_MChiSegmented.csv</code> layer. Once you select that file (using <code>browse</code>) you will see something like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Create_layer_menu.jpg" alt="Create layer">
+</div>
+<div class="title">Figure 13. Create layer menu</div>
+</div>
+</li>
+<li>
+<p>Hit okay. You will then be asked what <a href="https://en.wikipedia.org/wiki/Geographic_coordinate_system">coordinate system</a> you want. <strong>All csv data from LSDTopoTools is in the WGS84 coordinate system!</strong> Your rasters are typically in a local coordinate system but we convert point data to WGS84 so that they can be loaded onto web mapping platforms (i.e., Google Earth). The upshot is that you need to use WGS84 for the coordinate system.</p>
+</li>
+<li>
+<p>All coordinate systems have a code, called an EPSG code, and the EPSG code for WGS84 is <strong>4326</strong>: search for this (in the <code>Filter</code> form) and select it:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/EPSG_4325.jpg" alt="EPSG:4325">
+</div>
+<div class="title">Figure 14. Choose WGS 84 coordinate system with EPSG:4325</div>
+</div>
+</li>
+<li>
+<p>You should get something that looks like this:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/dots.jpg" alt="Chi point data">
+</div>
+<div class="title">Figure 15. Point data</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Sometimes you need to click in the little symbol that looks like a globe in the bottom right corner of QGIS an enable <code>on the fly CRS transformation</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Okay, this doesn&#8217;t look so great, right click on properties of the layer, choose <strong>graduated</strong> symbols, select the <code>m_chi</code> column (this is chi slope) pick a nice colour ramp, and then click on classify:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/M_chi_select.jpg" alt="Chi map">
+</div>
+<div class="title">Figure 16. Chi map coloured by chi steepness</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_summary_3">3.4. Summary</h3>
+<div class="paragraph">
+<p>By the end of this chapter you should have created a map of chi and chi slope, and loaded these data into QGIS for inspection.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_the_lsdtopotoolssetup_py_script">Appendix A: Using the LSDTopoToolsSetup.py script</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To help you set up <strong>LSDTopoTools</strong>, we have written a series of modules in <a href="https://www.python.org/">python</a> that automate the creation of our standard directory structure, downloading of the source code and compiling the source code into programs. The script is called <a href="https://github.com/LSDtopotools/LSDAutomation/blob/master/LSDTopoToolsSetup.py">LSDTopoToolsSetup.py</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_getting_the_lsdtopotools_setup_script">A.1. Getting the LSDTopoTools setup script</h3>
+<div class="paragraph">
+<p>LSDTopoTools works in all popular operating systems (Windows, MacOS, Linux) by using <a href="https://www.vagrantup.com/">Vagrant</a> to create a Linux server within your host operating system: if you are not in a native Linux environment you should start a Vagrant server by <a href="http://lsdtopotools.github.io/LSDTT_book/#_installing_lsdtopotools_using_virtualbox_and_vagrant">following these directions</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once you have done that, you should be able to <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a> into a Linux session using <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">putty.exe</a> on Windows or the <code>vagrant ssh</code> command in MacOS and Linux.</p>
+</div>
+<div class="paragraph">
+<p>Once you are in a Linux operating system, the easiest way to get the script is to use the utility <code>wget</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ wget https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alternatives_to_wget">A.1.1. Alternatives to wget</h4>
+<div class="paragraph">
+<p>You can also get the script by cloning the LSDAutomation repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDAutomation.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or you can got to the <a href="https://raw.githubusercontent.com/LSDtopotools/LSDAutomation/master/LSDTopoToolsSetup.py">raw text of the file</a>, then copy the text and paste into your favourite text editor (i.e. <a href="http://brackets.io/">Brackets</a>). You should save the file as <code>LSDTopoToolsSetup.py</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_the_lsdtopotools_setup_script">A.2. Running the LSDTopoTools setup script</h3>
+<div class="paragraph">
+<p>The setup script is a python script so you need python to run it. It should be run <strong>in Linux</strong>, so if you do not have a native Linux operating system the script should be run in your Vagrant server. Almost all flavours of Linux come with python installed as default (the Ubuntu system installed by our vagrantfiles is one example) so we will assume you have python.</p>
+</div>
+<div class="paragraph">
+<p>The script requires parameters; if you run the script with no parameters, it will give you a message telling you what to do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py
+
+=======================================================================
+Hello there, I am the going to help you set up LSDTopoTools!
+You will need to tell me what to do.
+If you are in vagrant, LSDTopoTools will always be installed in the root directory (\).
+If you are not in vagrant,
+LSDTopoTools will be installed in your home directory if you run this with:
+   python LSDTopoToolsSetup.py -id 0
+
+Or your current directory.
+(i.e., the directory from which you called this program)
+
+if you run with this:
+   python LSDTopoToolsSetup.py -id 1
+
+For help type:
+   python LSDTopoToolsSetup.py -h
+
+=======================================================================</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_looking_at_all_the_lsdtopotoolssetup_options">A.2.1. Looking at all the LSDTopoToolsSetup options</h4>
+<div class="paragraph">
+<p>You can call help for the <code>LSDTopoToolsSetup.py</code> script with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ python LSDTopoToolsSetup.py -h</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_a_default_setup">A.2.2. A default setup</h4>
+<div class="paragraph">
+<p>In fact, there is no default setup, since you have to tell the tool where to install <strong>LSDTopoTools</strong>. You do this by using the <code>-id</code> flag.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you select 0, LSDTopoTools will be installed in your home directory, which you can get to with the command <code>cd ~</code>.</p>
+</li>
+<li>
+<p>If you select 1, LSDTopoTools will be installed in the current directory (i.e. the directory where the script is located).</p>
+</li>
+<li>
+<p>If you are running a vagrant machine, these instructions will be ignored and LSDTopoTools will be installed in the root directory (you can get there with the command <code>cd \</code>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will install a directory <code>LSDTopoTools</code> with subdirectories <code>Git_projects</code> and <code>Topographic_projects</code>. Each of these folders will clone subfolders from our github pages, and will compile the <strong>Analysis_driver</strong> as well as the <strong>chi_tool</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The directories will look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">/LSDTopoTools
+  |--Git_projects
+  |----LSDTopoTools_AnalysisDriver
+  |----LSDTopoTools_ChiMudd2014
+  |--Topographic_projects
+  |----LSDTT_workshop_data
+  |----Test_data</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_other_setup_options">A.2.3. Other setup options</h4>
+<div class="paragraph">
+<p>There are a number of other options on <code>LSDTopoToolsSetup.py</code>, which we will list here, as well as in the <a href="#_table_of_lsdtopotoolssetup_py_options">table below</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-CE True</code> Clone and compile the channel extraction programs used in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013WR015167/abstract">Clubb et al, WRR, 2014</a>.</p>
+</li>
+<li>
+<p><code>-MChi True</code> Clone and compile the tools for performing the chi analysis of <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES, 2014</a>.</p>
+</li>
+<li>
+<p><code>-CRN True</code> Clone and compile the tools for calculating basinwide denudation rates from the cosmogenic nuclides <sup>10</sup>Be and <sup>26</sup>Al <a href="http://www.earth-surf-dynam.net/4/655/2016/">Mudd et al., ESURF, 2016</a>.</p>
+</li>
+<li>
+<p><code>-cp True</code> Check the path names in all the subfolders in <code>Topographic_projects</code> to reflect your own directory structure.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_if_you_are_running_on_native_linux">A.2.4. If you are running on native Linux</h4>
+<div class="paragraph">
+<p>If your native operating system is Linux, you should be able to get <strong>LSDTopoTools</strong> working very quickly using <code>LSDTopoToolsSetup.py</code> without having to use vagrant. However, you do need to ensure that you have the utilities <code>make</code>, the gnu Pass:[C++] compiler installed, and also you need <a href="http://www.fftw.org/">FFTW</a> installed. If you are in Ubuntu installing FFTW is as easy as: <code>sudo apt-get install -y libfftw3-dev</code>. If you are in another flavour of Linux you will need to follow the full setup, which is described on the <a href="http://www.fftw.org/">FFTW website</a>. Once you have that stuff working, you can use <code>LSDTopoToolsSetup.py</code> to get everything working in a jiffy.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_table_of_lsdtopotoolssetup_py_options">A.3. Table of LSDTopoToolsSetup.py options</h3>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Installation directory options</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Flag</th>
+<th class="tableblock halign-left valign-top">Input type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer, either 0 or 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0 == home directory, 1 == current directory. If you are in vagrant it will ignore this option and install in the root directory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-CRN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True, installs the CAIRN CRN package for calculating basinwide denudation rates from the cosmogenic nuclides <sup>10</sup>Be and <sup>26</sup>Al <a href="http://www.earth-surf-dynam.net/4/655/2016/">Mudd et al., ESURF, 2016</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-CE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True, installs the channel extraction programs used in <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013WR015167/abstract">Clubb et al, WRR, 2014</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-MChi</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True, installs the tools for performing the chi analysis of <a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JF002981/abstract">Mudd et al., JGR-ES, 2014</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-cp</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (either True or False)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If this is True,  checks the pathnames of the parameter files <code>.driver</code> and <code>.LSDTT_driver</code> in all the subfolders of <code>Topographic_projects</code> and corrects them so they reflect the user&#8217;s directory structure.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_making_directories_for_vagrant">Appendix B: Making directories for Vagrant</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This appendix walks you through making the correct directories in you <strong>host</strong> operating system. This could be windows or MacOS. If you are working in Linux, it makes no sense to use Vagrant. Instead, you should use <a href="#_using_the_lsdtopotoolssetup_py_script">our script LSDTopoToolsSetup.py</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_creating_directories_for_vagrant_in_windows">B.1. Creating directories for Vagrant in Windows.</h3>
+<div class="paragraph">
+<p>You could do all of the following steps using windows explorer, but the rationale here for doing it in a powershell is that you can copy and paste from these instructions to make sure the directory names are correct.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a powershell window. You can do this by clicking on the start button and typing "powershell".</p>
+</li>
+<li>
+<p>Now go to the <code>C:\</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS &gt; cd c:\</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now make a directory called VagrantBoxes:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS C:\&gt; mkdir VagrantBoxes</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Go into this directory and then make two additional directories (the names are below):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS C:\&gt; cd VagrantBoxes
+PS C:\VagrantBoxes&gt; mkdir Ubuntu
+PS C:\VagrantBoxes&gt; mkdir LSDTopoTools</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You could call the "Ubuntu" folder anything you like (sometimes I call them Ubuntu64 or Ubuntu32) but the name of the <strong>LSDTopoTools</strong> folder is <strong>ESSENTIAL": it has to be spelled exactly like that and is case sensitive (i.e., lsdtopotools or LSDtopotools will not work, it has to be *LSDTopoTools</strong>).
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Now go into the Ubuntu folder (or whatever you called it) and get one of our vagrantfiles using <strong>wget</strong>. You will need to be online to do this! Then rename the file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">PS C:\VagrantBoxes&gt; cd Ubuntu
+PS C:\VagrantBoxes\Ubuntu&gt; wget https://raw.githubusercontent.com/LSDtopotools/LSDVagrantFiles/master/Vagrantfile_32bit_FFTW
+PS C:\VagrantBoxes\Ubuntu&gt; mv Vagrantfile_32bit_FFTW vagrantfile</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This will only work with Windows 10. Windows 7 has an old powershell version that doesn&#8217;t have wget. I don&#8217;t know about windows 8 but nobody has that anyway. If you have an older version of Windows you need to save the <a href="https://raw.githubusercontent.com/LSDtopotools/LSDTT_vagrantfiles/master/Vagrantfile_32bit_FFTW">vagrantfile</a> as <code>vagrantfile</code> (NO EXTENSION!!) in your <code>Ubuntu</code> directory.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_directories_for_vagrant_in_macos">B.2. Creating directories for Vagrant in MacOS.</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The author of this section does not use MacOS so these are actually educated guesses. In the future I hope to sit down with a Mac user and make sure it works but for now there is a possibility this won&#8217;t work.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a terminal window. I guess you use finder to do that. I wouldn&#8217;t know since I don&#8217;t use MacOS.</p>
+</li>
+<li>
+<p>Once you have a terminal window open, we are in Linux world since MacOS is written on top of Linux! Yay! It is so nice to be in a familiar operating system (for me, at least.)</p>
+<div class="paragraph">
+<p>We are going to put stuff into your "home" directory. Go there by typing this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd ~</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now make a directory called VagrantBoxes:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ mkdir VagrantBoxes</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Go into this directory and then make two additional directories (the names are below):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd VagrantBoxes
+$ mkdir Ubuntu
+$ mkdir LSDTopoTools</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You could call the "Ubuntu" folder anything you like (sometimes I call them Ubuntu64 or Ubuntu32) but the name of the <strong>LSDTopoTools</strong> folder is <strong>ESSENTIAL": it has to be spelled exactly like that and is case sensitive (i.e., lsdtopotools or LSDtopotools will not work, it has to be *LSDTopoTools</strong>).
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Now go into the Ubuntu folder (or whatever you called it) and get one of our vagrantfiles using <strong>wget</strong>. You will need to be online to do this! Then rename the file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd Ubuntu
+$ wget https://raw.githubusercontent.com/LSDtopotools/LSDVagrantFiles/master/Vagrantfile_64bit_FFTW
+$ mv Vagrantfile_64bit_FFTW vagrantfile</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Some MacOS machines have 64 bit guest operating systems disabled so you might have to use the 32 bit version (just change the <code>64</code> to <code>32</code> above).
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_plotting_lsdtopotools_output_with_python">Appendix C: Plotting LSDTopoTools output with Python</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Much more effort has been put into DEM analysis with <strong>LSDTopoTools</strong> than visualisation since outputs are readable by GIS software such as <a href="https://www.qgis.org">QGIS</a> and <a href="https://www.arcgis.com/">ArcGIS</a>.
+However we do have some <a href="https://www.python.org/">python</a> scripts that are aimed at creating perfectly reproducible figures. This appendix will give some of the basics of using our visualisation scripts.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This component of <strong>LSDTopoTools</strong> is under constant development and is therefore quite buggy. The basic functions should be accessible to new user but it will help if you know some python. You might try to learn via <a href="https://www.codecademy.com/learn/python">codeacademy</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_setting_up_python">C.1. Setting up Python</h3>
+<div class="paragraph">
+<p>This is a quick guide. There are a lot of options for setting up python but this is our preferred setup.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Do not set up python in a vagrant server. Instead do it in your host operating system. The vagrant server is a stripped down version of Linux that cannot generate windows so you can have only limited functionality of these tools in a vagrant server.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The best way to install python is <a href="http://conda.pydata.org/miniconda.html">miniconda</a>. We will use <strong>Python 2.7</strong>, so use the Python 2.7 installer.</p>
+</li>
+<li>
+<p>Once you have installed that, you can go into a powershell (windows) or terminal (MacOS and Linux) and get the other stuff you need:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-consol" data-lang="consol">  PS&gt; conda install scipy
+  PS&gt; conda install matplotlib
+  PS&gt; conda install pandas
+  PS&gt; conda install gdal
+  PS&gt; conda install spyder</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To run spyder you just type <code>spyder</code> at the command line.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Spyder needs an older version of a package called <strong>PyQt</strong>. If spyder doesn&#8217;t start correctly, run <code>conda install pyqt=4.10 -f</code>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lsdtopotools_python_plotting_functions">C.2. LSDTopoTools python plotting functions</h3>
+<div class="paragraph">
+<p>I am afraid this is a bit disorganised, since it has developed organically and we haven&#8217;t had time to clean everything up.</p>
+</div>
+<div class="paragraph">
+<p>You should get our plotting and mapping tools from our <a href="https://github.com/LSDtopotools">github repositories</a>. Here is the next irritation: if you are using a vagrant server, the tool <a href="https://git-scm.com/"><strong>git</strong></a> is installed on your Linux server. But we suggest you run python in your host operating system (e.g., Windows). Meaning you should install <strong>git</strong> on your host operating system.</p>
+</div>
+<div class="sect3">
+<h4 id="_getting_git">C.2.1. Getting git</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Linux: <strong>git</strong> is probably already on your system but if not you can install with any package manager (e.g., <code>sudo apt-get install git</code>).</p>
+</li>
+<li>
+<p>Windows: Download and install <a href="https://git-scm.com/download/win">git for Windows</a>.</p>
+</li>
+<li>
+<p>MacOS: Download and install <a href="https://git-scm.com/download/mac">git for MacOS</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_getting_our_plotting_tools">C.2.2. Getting our plotting tools</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make a directory to hold the plotting tools. I usually call the directory for git projects "Git_projects".</p>
+</li>
+<li>
+<p>In Windows, right click on this directory and select "Git bash here". For this to work you will have needed to have installed <strong>git for Windows</strong> first.</p>
+</li>
+<li>
+<p>In Linux or MacOS, open a terminal and go to this folder.</p>
+</li>
+<li>
+<p>Clone our plotting repositories from github (this grabs the files from <a href="https://github.com/">github</a>):</p>
+</li>
+<li>
+<p>Getting files from github. In MacOS and linux the prompt will be <code>$</code>, in powershell it will be <code>PS&gt;</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ git clone https://github.com/LSDtopotools/LSDMappingTools.git
+$ git clone https://github.com/LSDtopotools/LSDAutomation.git
+$ git clone https://github.com/LSDtopotools/LSDPlotting.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You should have all the python files you need now.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-01-12 10:21:03 GMT Standard Time
+</div>
+</div>
+</body>
+</html>
